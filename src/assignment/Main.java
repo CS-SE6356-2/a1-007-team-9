@@ -12,7 +12,7 @@ class NamePrinter {
      * Prints the names of the group members separated by spaces.
      */
     public void printNames() {
-        String separator = "+";
+        String separator = " + ";
 
         String[] names = {
                 "Andrew Kelly",
