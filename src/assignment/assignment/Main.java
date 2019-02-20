@@ -10,7 +10,7 @@ public class Main {
 class NamePrinter {
     /**
      * Prints the names of the group members separated by a comma.
-     */
+     */ 
     public void printNames() {
         String separator = ", ";
 
