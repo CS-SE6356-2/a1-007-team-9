@@ -16,7 +16,7 @@ class NamePrinter {
 
         String[] names = {
                 "Andrew Kelly",
-                "Matthew chalcraft",
+                "Bailey Denis",
                 "Matthew Chalcraft",
                 "Muhammad Jamal"
                  };
