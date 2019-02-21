@@ -12,13 +12,13 @@ class NamePrinter {
      * Prints the names of the group members separated by a comma.
      */ 
     public void printNames() {
-        String separator = ", ";
+        String separator = "; ";
 
         String[] names = {
                 "Andrew Kelly",
                 "Name 2",
                 "Matthew Chalcraft",
-                "Name 3",
+                "Muhammad Jamal",
                 "Name 4" };
 
         System.out.println(String.join(separator, names));
