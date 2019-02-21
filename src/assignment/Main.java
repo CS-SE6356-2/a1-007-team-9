@@ -16,10 +16,10 @@ class NamePrinter {
 
         String[] names = {
                 "Andrew Kelly",
-                "Name 2",
-                "Matthew Chalcraft",
+                "Matthew chalcraft",
                 "Name 3",
-                "Name 4" };
+                "Name 4",
+                 };
 
         System.out.println(String.join(separator, names));
     }
