@@ -16,6 +16,7 @@ public class Deck {
                 cards.add(new Card(currnetValue, currentSuite));
             }
         }
+        Shuffle();
     }//default constructor that creates a unshuffled deck of 52 basic playing cards
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -38,5 +39,22 @@ public class Deck {
         Card drawn = this.cards.get(this.cards.size()-1);
         this.cards.remove(drawn);
         return drawn;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------
+        //allows the user to play with any number of decks
+    public void AddDeck(Deck additional){
+        for (int i = 0; i < additional.cards.size(); i++){
+            this.cards.add(additional.cards.get(i));
+        }
+        Shuffle();
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------
+
+    public void PrintDeck(){
+        for (int i = 0; i < this.cards.size(); i++) {
+            System.out.println(this.cards.get(i).value + " " + this.cards.get(i).suite);
+        }
     }
 }

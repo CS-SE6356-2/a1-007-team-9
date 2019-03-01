@@ -5,7 +5,7 @@ package resources;
 import java.util.ArrayList;
 
 public class Player {
-
+    int playernumer;
     public ArrayList<Card> hand; // The players current hand
     public Possible_Actions move;
     public Boolean game_state; // True = int, False = out of the game
@@ -18,7 +18,8 @@ public class Player {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    public Player(){
+    public Player(int num){
+        playernumer = num;
         card_sum = 0;
         money = 1000;
         bet = 0;
@@ -33,7 +34,7 @@ public class Player {
     public void Play(Deck deck){
         switch(this.move){
             case HIT:
-                GetCard(deck);
+                DrawCard(deck);
                 System.out.println("Players card is " +hand.get(hand.size()-1).value + " " + hand.get(hand.size()-1).suite);
                 System.out.println("Players current hand is worth: " + card_sum);
                 System.out.println();
@@ -41,7 +42,7 @@ public class Player {
 
             case DOUBLE:
                 System.out.println("Player has double down");
-                GetCard(deck);
+                DrawCard(deck);
                 money  = money - bet;
                 bet = bet*2;
                 round_state = false;
@@ -68,13 +69,12 @@ public class Player {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public void DrawInitialHand(Deck deck){
-        GetCard(deck);
-        GetCard(deck);
-        AddCardSum();
+        DrawCard(deck);
+        DrawCard(deck);
 
     }
 
-    public void GetCard(Deck deck){
+    public void DrawCard(Deck deck){
         hand.add(deck.Draw());
         AddCardSum();
     }
@@ -152,8 +152,13 @@ public class Player {
         if(card_sum > 21){
             round_state = false;
             bet = 0;
-            System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
-            System.out.println();
+            if(playernumer != 0) {
+                System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
+                System.out.println();
+            }else{
+                System.out.println("Dealer has busted");
+                System.out.println();
+            }
         }
     }
 
@@ -169,10 +174,11 @@ public class Player {
     }
         //prints all information on the player
     public void PrintInformation(){
-        PrintHand();
+        System.out.println();
+        System.out.println("Player: " + playernumer);
         System.out.println("Players current bet: " + bet);
         System.out.println("Players current money: " + money);
-        System.out.println();
+        PrintHand();
     }
 
 }//player
