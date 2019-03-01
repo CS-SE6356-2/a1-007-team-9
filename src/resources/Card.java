@@ -11,11 +11,7 @@ public class Card {
         value = n;
         suite = m;
     }//constructor that take value and suite and creates a card from the input
-}
+}//Card
 
-enum Value_Types{
-    ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACk,QUEEN,KING
-}
-enum Suite_Types{
-    SPADE,DIAMOND,HEART,CLUB
-}
+//---------------------------------------------------------------------------------------------------------------------------
+

@@ -22,9 +22,9 @@ public class Deck {
         }
     }//default constructor that creates a unshuffled deck of 52 basic playing cards
 
-    //----------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------
 
-    public void shuffle(){
+    public void Shuffle(){
         ArrayList<Card> temp = new ArrayList<Card>();
         Random rand = new Random();
         while(!cards.isEmpty()){
@@ -34,6 +34,13 @@ public class Deck {
         }
         cards = temp;
 
-    }
+    }//shuffle
 
+    //---------------------------------------------------------------------------------------------------------------------------
+
+    public Card Draw(){
+        Card drawn = this.cards.get(this.cards.size()-1);
+        this.cards.remove(drawn);
+        return drawn;
+    }
 }

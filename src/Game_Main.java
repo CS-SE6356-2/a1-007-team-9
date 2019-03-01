@@ -4,20 +4,19 @@ public class Game_Main {
 
     public static void main(String[] args) {
         Deck deck = new Deck();
+        Player one = new Player();
+        deck.Shuffle();
 
-        for(int i = 0; i < deck.cards.size(); i++){
-            System.out.println(deck.cards.get(i).suite + " " + deck.cards.get(i).value);
+        one.DrawInitialHand(deck);
+        one.MakeBet(100);
+        one.PrintInformation();
+        one.move = Possible_Actions.STAND;
+        one.Play(deck);
 
-        }
+        one.PrintInformation();
 
-        deck.shuffle();
-        System.out.println();
 
-        for(int i = 0; i < deck.cards.size(); i++){
-            System.out.println(deck.cards.get(i).suite + " " + deck.cards.get(i).value);
-
-        }
-    }
+    }//main
 
 
 }
