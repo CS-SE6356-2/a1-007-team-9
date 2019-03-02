@@ -114,7 +114,6 @@ public class Game_Main {
             }
 
 
-
         //After all of the players have played out their hands dealer goes
         //dealer will play until they have atleast a 17 card sum
         while(dealer.card_sum < 17){
@@ -131,9 +130,13 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------------
 
     static void CheckforWinners(ArrayList<Player> players, int dealer_sum){
+        System.out.println("Dealers sum is: " + dealer_sum);
         for (int i = 0; i < players.size(); i++) {
-            if(players.get(i).card_sum > dealer_sum){
+            if(players.get(i).card_sum > dealer_sum || (players.get(i).card_sum < 21 && dealer_sum > 21)){
                 //player wins gets even money
+                System.out.println("Player " + (i+1) + " won. They have been paid: " + players.get(i).bet);
+                System.out.println();
+
                 players.get(i).money += (players.get(i).bet*2);
                 players.get(i).bet = 0;
                 players.get(i).hand = new ArrayList<Card>();
@@ -141,6 +144,9 @@ public class Game_Main {
 
             }else if(players.get(i).card_sum == dealer_sum){
                //player pushes get only their bet back
+                System.out.println("Player " + (i+1) + " pushed.");
+                System.out.println();
+
                 players.get(i).money += players.get(i).bet;
                 players.get(i).bet = 0;
                 players.get(i).hand = new ArrayList<Card>();
@@ -148,6 +154,9 @@ public class Game_Main {
 
             }else{
                 //player loses and loses bet
+                System.out.println("Player " + (i+1) + " lost.");
+                System.out.println();
+
                 players.get(i).bet = 0;
                 players.get(i).hand = new ArrayList<Card>();
                 players.get(i).card_sum = 0;
