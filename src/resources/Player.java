@@ -38,14 +38,16 @@ public class Player {
                 System.out.println("Players card is " +hand.get(hand.size()-1).value + " " + hand.get(hand.size()-1).suite);
                 System.out.println("Players current hand is worth: " + card_sum);
                 System.out.println();
+                CheckforBust();
                 break;
 
             case DOUBLE:
                 System.out.println("Player has double down");
-                DrawCard(deck);
-                money  = money - bet;
+                money = money - bet;
                 bet = bet*2;
                 round_state = false;
+                DrawCard(deck);
+                CheckforBust();
                 PrintInformation();
                 break;
 
@@ -71,6 +73,7 @@ public class Player {
     public void DrawInitialHand(Deck deck){
         DrawCard(deck);
         DrawCard(deck);
+        CheckforBust();
 
     }
 
@@ -143,7 +146,6 @@ public class Player {
             }
 
         }//for loop
-        CheckforBust();
     }//Adding up card sum for the player
 
     //---------------------------------------------------------------------------------------------------------------------------
