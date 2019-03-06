@@ -1,5 +1,5 @@
 package resources;
 
-public enum Possible_Actions{
+public enum Possible_Moves {
     HIT,STAND,DOUBLE,SURRENDER
 }

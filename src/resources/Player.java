@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Player {
     int playernumer;
     public ArrayList<Card> hand; // The players current hand
-    public Possible_Actions move;
+    public Possible_Moves move;
     public Boolean game_state; // True = int, False = out of the game
     public Boolean round_state; // True = int, False = out of the round
     public int card_sum; // Sum of the current cards in the players hand
@@ -153,7 +153,6 @@ public class Player {
     void CheckforBust(){
         if(card_sum > 21){
             round_state = false;
-            bet = 0;
             if(playernumer != 0) {
                 System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
                 System.out.println();
