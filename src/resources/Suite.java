@@ -1,5 +1,5 @@
 package resources;
 
-public enum Suite_Types{
+public enum Suite {
     SPADE,DIAMOND,HEART,CLUB
 }

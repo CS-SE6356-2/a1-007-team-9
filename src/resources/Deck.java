@@ -11,8 +11,8 @@ public class Deck {
 
     public Deck(){
         cards = new ArrayList<Card>();
-        for(Suite_Types currentSuite : Suite_Types.values()) {
-            for(Value_Types currnetValue : Value_Types.values()) {
+        for(Suite currentSuite : Suite.values()) {
+            for(Value currnetValue : Value.values()) {
                 cards.add(new Card(currnetValue, currentSuite));
             }
         }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Player {
     int playernumer;
     public ArrayList<Card> hand; // The players current hand
-    public Possible_Actions move;
+    public Possible_Moves move;
     public Boolean game_state; // True = int, False = out of the game
     public Boolean round_state; // True = int, False = out of the round
     public int card_sum; // Sum of the current cards in the players hand
@@ -38,14 +38,16 @@ public class Player {
                 System.out.println("Players card is " +hand.get(hand.size()-1).value + " " + hand.get(hand.size()-1).suite);
                 System.out.println("Players current hand is worth: " + card_sum);
                 System.out.println();
+                CheckforBust();
                 break;
 
             case DOUBLE:
                 System.out.println("Player has double down");
-                DrawCard(deck);
-                money  = money - bet;
+                money = money - bet;
                 bet = bet*2;
                 round_state = false;
+                DrawCard(deck);
+                CheckforBust();
                 PrintInformation();
                 break;
 
@@ -71,6 +73,7 @@ public class Player {
     public void DrawInitialHand(Deck deck){
         DrawCard(deck);
         DrawCard(deck);
+        CheckforBust();
 
     }
 
@@ -143,7 +146,6 @@ public class Player {
             }
 
         }//for loop
-        CheckforBust();
     }//Adding up card sum for the player
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -151,7 +153,6 @@ public class Player {
     void CheckforBust(){
         if(card_sum > 21){
             round_state = false;
-            bet = 0;
             if(playernumer != 0) {
                 System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
                 System.out.println();
