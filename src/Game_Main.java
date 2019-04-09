@@ -4,6 +4,11 @@ import java.util.*;
 public class Game_Main {
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
+
+        Frame f = new Frame();
+        DrawPane drawPane = new DrawPane();
+        f.add(drawPane);
+
         Deck deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
         System.out.println("Welcome to BlackJack");
