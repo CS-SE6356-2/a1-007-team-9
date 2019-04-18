@@ -9,9 +9,10 @@ public class GUIF {
     private JButton welcomeToBlackJackButton;
     private JPanel bgpanel;
     private JButton hitButton;
-    private  JButton stayButton;
+    private JButton stayButton;
     private JButton SurrenderButton;
     private JButton DoubleButton;
+    private JButton betButton;
 
 
     public GUIF() {
@@ -40,12 +41,21 @@ public class GUIF {
             @Override
             public  void actionPerformed(ActionEvent e) {
                 System.out.println("Bet");
+
             }
         });
         DoubleButton.addActionListener(new ActionListener() {
             @Override
             public  void actionPerformed(ActionEvent e) {
                 System.out.println("Double");
+            }
+        });
+        betButton.addActionListener(new ActionListener() {
+            @Override
+            public  void actionPerformed(ActionEvent e) {
+                String betamt = JOptionPane.showInputDialog("enter bet amount");
+                System.out.println(betamt);
+
             }
         });
 
@@ -59,12 +69,13 @@ public class GUIF {
         frame.add(gui.stayButton);
         frame.add(gui.SurrenderButton);
         frame.add(gui.DoubleButton);
+        frame.add(gui.betButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
-        public static void main(String[] args) {
+        public void main(String[] args) {
         GUIF myWindow = new GUIF();
         myWindow.createGui();
     }
