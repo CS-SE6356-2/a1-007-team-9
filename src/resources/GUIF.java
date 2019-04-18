@@ -10,7 +10,7 @@ public class GUIF {
     private JPanel bgpanel;
     private JButton hitButton;
     private  JButton stayButton;
-    private JButton surrenderButton;
+    private JButton SurrenderButton;
     private JButton DoubleButton;
 
 
@@ -36,7 +36,7 @@ public class GUIF {
                 System.out.println("Stay");
             }
         });
-        surrenderButton.addActionListener(new ActionListener() {
+        SurrenderButton.addActionListener(new ActionListener() {
             @Override
             public  void actionPerformed(ActionEvent e) {
                 System.out.println("Bet");
@@ -57,7 +57,7 @@ public class GUIF {
         frame.setContentPane(gui.bgpanel);
         frame.add(gui.hitButton);
         frame.add(gui.stayButton);
-        frame.add(gui.surrenderButton);
+        frame.add(gui.SurrenderButton);
         frame.add(gui.DoubleButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
