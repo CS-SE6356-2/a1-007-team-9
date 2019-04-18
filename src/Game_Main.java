@@ -325,4 +325,17 @@ public class Game_Main {
         return true;
     }
 
+    public void hit() {
+
+    }
+
+    public void stay(){
+
+    }
+    public void surrender() {
+
+    }
+    public void doublebet() {
+        
+    }
 }
