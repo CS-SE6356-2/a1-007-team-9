@@ -20,3 +20,5 @@ SE-team9\.iml
 src/assignment/\.classpath
 
 src/assignment/\.project
+.classpath
+.project
