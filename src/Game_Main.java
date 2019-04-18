@@ -3,10 +3,14 @@ import resources.*;
 import javax.swing.*;
 import java.util.*;
 
+import static resources.GUIF.createGui;
+
 public class Game_Main {
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
 
+        GUIF BlackJackGUI = new GUIF();
+        BlackJackGUI.createGui();
 
         //DrawPane drawPane = new DrawPane();
         //f.add(drawPane);

@@ -7,22 +7,65 @@ import java.awt.event.ActionListener;
 public class GUIF {
     private JPanel Home;
     private JButton welcomeToBlackJackButton;
+    private JPanel bgpanel;
+    private JButton hitButton;
+    private  JButton stayButton;
+    private JButton surrenderButton;
+    private JButton DoubleButton;
+
 
     public GUIF() {
-        welcomeToBlackJackButton.addActionListener(new ActionListener() { //action listener for buttons to work
+//        welcomeToBlackJackButton.addActionListener(new ActionListener() { //action listener for buttons to work
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showMessageDialog(null,"Hello Players");
+//
+//            }
+//        });
+        bgpanel = new JPanel();
+
+        hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Hello Players");
-
+                System.out.println("hit");
             }
         });
+        stayButton.addActionListener(new ActionListener() {
+            @Override
+            public  void actionPerformed(ActionEvent e) {
+                System.out.println("Stay");
+            }
+        });
+        surrenderButton.addActionListener(new ActionListener() {
+            @Override
+            public  void actionPerformed(ActionEvent e) {
+                System.out.println("Bet");
+            }
+        });
+        DoubleButton.addActionListener(new ActionListener() {
+            @Override
+            public  void actionPerformed(ActionEvent e) {
+                System.out.println("Double");
+            }
+        });
+
     }
-        public static void main(String[] args) {
-        JFrame frame = new JFrame("GUIF");
-        frame.setContentPane(new GUIF().welcomeToBlackJackButton);
+
+    public static void createGui(){
+        GUIF gui = new GUIF();
+        JFrame frame = new JFrame("BlackJack");
+        frame.setContentPane(gui.bgpanel);
+        frame.add(gui.hitButton);
+        frame.add(gui.stayButton);
+        frame.add(gui.surrenderButton);
+        frame.add(gui.DoubleButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
 
+        public static void main(String[] args) {
+        GUIF myWindow = new GUIF();
+        myWindow.createGui();
     }
 }
