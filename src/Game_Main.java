@@ -12,8 +12,6 @@ public class Game_Main {
         GUIF BlackJackGUI = new GUIF();
         BlackJackGUI.createGui();
 
-        //DrawPane drawPane = new DrawPane();
-        //f.add(drawPane);
 
         Deck deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
