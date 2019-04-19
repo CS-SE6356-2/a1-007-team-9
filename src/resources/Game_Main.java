@@ -70,7 +70,12 @@ public class Game_Main {
 
 
         StartGame(deck,players);
-
+        System.out.println("Thanks for playing players won");
+        for(int i = 0; i < players.size(); i++){
+            System.out.println("Player " + (i+1) + " won: " + players.get(i).money);
+            System.out.println();
+        }
+        return;
     }//main
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -96,7 +101,7 @@ public class Game_Main {
             PrintPlayers(players);
             PlayRound(deck, players);
         }
-
+        return;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -111,14 +116,18 @@ public class Game_Main {
 
 
         dealer.DrawInitialHand(deck);
+<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
+=======
+>>>>>>> Final message and insurance:src/Game_Main.java
         if (dealer.hand.get(0).value == Value.ACE){
-                //insurance(players, dealer);
+                insurance(players, dealer);
             }
 
+        System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         CheckForBlackJack(players,dealer);
 
         for (int i = 0; i < players.size(); i++) {
@@ -238,7 +247,7 @@ public class Game_Main {
 
             }
         }
-    }
+    }//check for winner
 
     //---------------------------------------------------------------------------------------------------------------------------
 
@@ -275,16 +284,8 @@ public class Game_Main {
     public static void CheckForBlackJack(ArrayList<Player> players, Player dealer){//checkings a change
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
-                if(dealer.card_sum != 21){
                     System.out.println("Player " + (i+1) + " has a BlackJack");
-                    players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
-                    players.get(i).bet = 0;
-
-                }else{
-                    System.out.println("Player " + (i+1) + " has a BlackJack, As does the dealer");
-                    players.get(i).money += players.get(i).bet + (players.get(i).bet);
-                    players.get(i).bet = 0;
-                }
+                    players.get(i).round_state = false;
             }
         }
     }
@@ -314,11 +315,13 @@ public class Game_Main {
         current.Play(deck);
         setPlayerHandLabel(current);
     }
+
     public static void surrender(Player current, Deck deck) {
         current.move = Possible_Moves.SURRENDER;
         current.Play(deck);
         setPlayerHandLabel(current);
     }
+
     public static void doublebet(Player current, Deck deck) {
         current.move = Possible_Moves.DOUBLE;
         current.Play(deck);
@@ -351,26 +354,64 @@ public class Game_Main {
 
     public static void insurance(ArrayList<Player> players, Player dealer){
         System.out.println("Dealer is currently showing a Ace.");
+        dealer.card_sum = 21;
         for(int i = 0; i < players.size(); i++){
+            int insurance_bet = 0;
+            players.get(i).PrintInformation();
             System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
             String userinput;
             while(true) {
+<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
                 userinput = JOptionPane.showInputDialog("would you like to make a insurance bet: Y or N");
                 if(userinput == "Y" || userinput == "N"){
+=======
+                userinput = input.next();
+                if(userinput.length() == 1 && (userinput.charAt(0) == 'Y' || userinput.charAt(0) == 'N')){
+>>>>>>> Final message and insurance:src/Game_Main.java
                     break;
                 }
                 System.out.println("Please enter Y or N");
             }//getting user input
 
+<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
             if(userinput == "Y"){
                 String insamt = JOptionPane.showInputDialog("enter bet amount");
                 System.out.println(insamt);
                 int insurance_bet = Integer.parseInt(insamt);
 
+=======
+            if(userinput.charAt(0) == 'Y'){
+                System.out.print("Player " + (i+1) + " please enter you bet for your insurance: ");
+                while(true){
+                        userinput = input.next();
+                        if(IsNumber(userinput)){
+                            int temp = Integer.parseInt(userinput);
+                            if(0 < temp && temp <= players.get(i).money){
+                                insurance_bet = temp;
+                                break;
+                            }
+                        }
+                        System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
+                }//getting bet from console
+>>>>>>> Final message and insurance:src/Game_Main.java
 
-            }
+                if(dealer.card_sum == 21){
+                    players.get(i).money += insurance_bet;
+                    players.get(i).round_state = false;
+                }else{
+                    players.get(i).money -= insurance_bet;
+                }
+            }//Yes to insurance
 
         }//player loop
+
+        if(dealer.card_sum == 21){
+            System.out.println("Dealer has a BlackJack insurance is paid out");
+            System.out.println();
+        }else{
+            System.out.println("Dealer did not have a BlackJack insurance is collected");
+            System.out.println();
+        }
     }//insurance
 
     public static Player getCurrentPlayer() {
