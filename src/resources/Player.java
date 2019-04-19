@@ -35,15 +35,14 @@ public class Player {
         switch(this.move){
             case HIT:
                 DrawCard(deck);
-                System.out.println("Players card is " +hand.get(hand.size()-1).value + " " + hand.get(hand.size()-1).suite);
-                System.out.println("Players current hand is worth: " + card_sum);
+                PrintInformation();
                 System.out.println();
                 CheckforBust();
                 break;
 
             case DOUBLE:
                 System.out.println("Player has double down");
-                money = money - bet;
+                money -= bet;
                 bet = bet*2;
                 round_state = false;
                 DrawCard(deck);
@@ -55,8 +54,7 @@ public class Player {
                 System.out.println("Player has Surrendered and is now out of the round");
                 System.out.println();
                 money += bet/2;
-                bet = 0;
-                round_state = false;
+                resetPlayer();
                 break;
 
             case STAND:
@@ -173,6 +171,9 @@ public class Player {
         }
         System.out.println();
     }
+
+    //--------------------------------------------------------------------------------------------------------------------
+
         //prints all information on the player
     public void PrintInformation(){
         System.out.println();
@@ -180,6 +181,15 @@ public class Player {
         System.out.println("Players current bet: " + bet);
         System.out.println("Players current money: " + money);
         PrintHand();
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------
+
+    public void resetPlayer(){
+        this.bet = 0;
+        this.hand = new ArrayList<Card>();
+        this.card_sum = 0;
+        this.round_state = true;
     }
 
 }//player

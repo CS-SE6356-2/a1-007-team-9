@@ -64,11 +64,6 @@ public class Game_Main {
 
         StartGame(deck,players);
 
-
-
-
-
-
     }//main
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -100,40 +95,27 @@ public class Game_Main {
         Player dealer = new Player(0);
 
 
-        //Getting initial bets from all non dealer players
-        for (int i = 0; i < players.size(); i++){
-        System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
-            while(true){
-                String userinput = input.next();
-                if(IsNumber(userinput)){
-                    int temp = Integer.parseInt(userinput);
-                    if(0 < temp && temp <= players.get(i).money){
-                        players.get(i).MakeBet(temp);
-                        break;
-                    }
-                }
-                System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
-            }
-        }// end for loop
-
+        makeBet(players);
         DealInitialHands(players, deck);
         PrintPlayers(players);
 
 
         dealer.DrawInitialHand(deck);
+
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
-            if (dealer.hand.get(0).value == Value.ACE){
-                //insurance clause
+
+        if (dealer.hand.get(0).value == Value.ACE){
+                //insurance(players, dealer);
             }
 
         CheckForBlackJack(players,dealer);
-
 
         for (int i = 0; i < players.size(); i++) {
             while(players.get(i).round_state){
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
 
+                int move = 0;
                 while(true){
                     String playerMove;
                     System.out.println("1: HIT");
@@ -145,61 +127,38 @@ public class Game_Main {
                         }
                     }
                     playerMove = input.next();
+
                     if(IsNumber(playerMove)){
-                        int temp = Integer.parseInt(playerMove);
-                        if(players.get(i).hand.size() == 2 && players.get(i).money >= players.get(i).bet){
-                            if(0 < temp && temp <= 4){
-                                switch(temp){
-                                    case 1://Hit
-                                        players.get(i).move = Possible_Moves.HIT;
-                                        break;
-                                    case 2: //Stand
-                                            players.get(i).move = Possible_Moves.STAND;
-                                        break;
-                                    case 3://Surrender
-                                        players.get(i).move = Possible_Moves.SURRENDER;
-                                        break;
-                                    case 4: // Double
-                                        players.get(i).move = Possible_Moves.DOUBLE;
-                                        break;
-                                }
-                                players.get(i).Play(deck);
-                                break;
+                        int p = Integer.parseInt(playerMove);
+                        if(0 < p & p < 5){
+                            if(p == 3 && players.get(i).hand.size() != 2){
+                                System.out.println("Can't surrender Please enter a valid number between 1 and 4");
+                                continue;
+                            } else if(p == 4 && (players.get(i).hand.size() != 2 || !(players.get(i).money >= players.get(i).bet))){
+                                System.out.println("Can't double Please enter a valid number between 1 and 4");
+                                continue;
                             }
-                            System.out.println("Please enter a valid number between 1 and 4");
-                        }else if (players.get(i).hand.size() == 2){
-                            if(0 < temp && temp <= 4) {
-                                switch (temp) {
-                                    case 1://Hit
-                                        players.get(i).move = Possible_Moves.HIT;
-                                        break;
-                                    case 2: //Stand
-                                        players.get(i).move = Possible_Moves.STAND;
-                                        break;
-                                    case 3://Surrender
-                                        players.get(i).move = Possible_Moves.SURRENDER;
-                                        break;
-                                }
-                                players.get(i).Play(deck);
-                                break;
-                            }
-                        }else{
-                            if(0 < temp && temp <= 2){
-                                switch(temp){
-                                    case 1: // Hit
-                                        players.get(i).move = Possible_Moves.HIT;
-                                        break;
-                                    case 2:// Stand
-                                        players.get(i).move = Possible_Moves.STAND;
-                                        break;
-                                }
-                                players.get(i).Play(deck);
-                                break;
-                            }
-                            System.out.println("Please enter a valid number between 1 and 2");
+                                move = p;
+                            break;
                         }
                     }
-                }//while loop
+                    System.out.println("Please enter a valid number between 1 and 4");
+                }//while loop to get player input
+
+                switch(move){
+                    case 1://Hit
+                        hit(players.get(i),deck);
+                        break;
+                    case 2: //Stand
+                        stand(players.get(i),deck);
+                        break;
+                    case 3://Surrender
+                        surrender(players.get(i),deck);
+                        break;
+                    case 4: // Double
+                        doublebet(players.get(i),deck);
+                        break;
+                }
             }// while round state
         }// for players
 
@@ -210,9 +169,6 @@ public class Game_Main {
         }
 
         CheckforWinners(players, dealer);
-
-
-
 
     }
 
@@ -228,19 +184,15 @@ public class Game_Main {
                 System.out.println("Player " + (i+1) + " lost.");
                 System.out.println();
 
-                players.get(i).bet = 0;
-                players.get(i).hand = new ArrayList<Card>();
-                players.get(i).card_sum = 0;
+                players.get(i).resetPlayer();
 
                 //player has blackjack
             }else if(players.get(i).card_sum  == 21 && players.get(i).card_sum != dealer_sum){
                 System.out.println("Player " + (i+1) + " has won with a BlackJack");
                 System.out.println();
 
-
-                players.get(i).bet = 0;
-                players.get(i).hand = new ArrayList<Card>();
-                players.get(i).card_sum = 0;
+                players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
+                players.get(i).resetPlayer();
 
                 //player wins gets even money
             }else if(players.get(i).card_sum > dealer_sum || (players.get(i).card_sum < 21 && dealer_sum > 21)){
@@ -249,9 +201,7 @@ public class Game_Main {
                 System.out.println();
 
                 players.get(i).money += (players.get(i).bet*2);
-                players.get(i).bet = 0;
-                players.get(i).hand = new ArrayList<Card>();
-                players.get(i).card_sum = 0;
+                players.get(i).resetPlayer();
 
                 //player pushes and gets
             }else if(players.get(i).card_sum == dealer_sum){
@@ -260,22 +210,16 @@ public class Game_Main {
                 System.out.println();
 
                 players.get(i).money += players.get(i).bet;
-                players.get(i).bet = 0;
-                players.get(i).hand = new ArrayList<Card>();
-                players.get(i).card_sum = 0;
+                players.get(i).resetPlayer();
 
             }else{
                 //player loses and loses bet
                 System.out.println("Player " + (i+1) + " lost.");
                 System.out.println();
 
-                players.get(i).bet = 0;
-                players.get(i).hand = new ArrayList<Card>();
-                players.get(i).card_sum = 0;
+                players.get(i).resetPlayer();
 
             }
-
-            players.get(i).round_state = true;
         }
     }
 
@@ -325,17 +269,71 @@ public class Game_Main {
         return true;
     }
 
-    public void hit() {
+    //---------------------------------------------------------------------------------------------------------------------
+
+    //different move the play can take
+    public static void hit(Player current, Deck deck) {
+        current.move = Possible_Moves.HIT;
+        current.Play(deck);
 
     }
 
-    public void stay(){
+    public static void stand(Player current, Deck deck){
+        current.move = Possible_Moves.STAND;
+        current.Play(deck);
+    }
+    public static void surrender(Player current, Deck deck) {
+        current.move = Possible_Moves.SURRENDER;
+        current.Play(deck);
+    }
+    public static void doublebet(Player current, Deck deck) {
+        current.move = Possible_Moves.DOUBLE;
+        current.Play(deck);
+    }
 
-    }
-    public void surrender() {
+    //------------------------------------------------------------------------------------------------------------------
 
+    //getting first bets from the players
+    public static void makeBet(ArrayList<Player>players){
+        //Getting initial bets from all non dealer players
+        for (int i = 0; i < players.size(); i++){
+            System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
+            while(true){
+                String userinput = input.next();
+                if(IsNumber(userinput)){
+                    int temp = Integer.parseInt(userinput);
+                    if(0 < temp && temp <= players.get(i).money){
+                        players.get(i).MakeBet(temp);
+                        break;
+                    }
+                }
+                System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
+            }
+        }// end for loop
     }
-    public void doublebet() {
-        
-    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    public static void insurance(ArrayList<Player> players, Player dealer){
+        System.out.println("Dealer is currently showing a Ace.");
+        for(int i = 0; i < players.size(); i++){
+            System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
+            String userinput;
+            while(true) {
+                userinput = input.next();
+                if(userinput == "Y" || userinput == "N"){
+                    break;
+                }
+                System.out.println("Please enter Y or N");
+            }//getting user input
+
+            if(userinput == "Y"){
+                int insurance_bet = 0;
+
+
+            }
+
+        }//player loop
+    }//insurance
+
 }
