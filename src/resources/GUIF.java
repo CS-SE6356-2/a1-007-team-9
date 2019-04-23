@@ -27,6 +27,7 @@ public class GUIF {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("hit");
+                //Game_Main.
             }
         });
         stayButton.addActionListener(new ActionListener() {
