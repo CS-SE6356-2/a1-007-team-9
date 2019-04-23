@@ -246,7 +246,7 @@ public class Game_Main {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    public static void CheckForBlackJack(ArrayList<Player> players, Player dealer){
+    public static void CheckForBlackJack(ArrayList<Player> players, Player dealer){//checkings a change
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
                 if(dealer.card_sum != 21){
