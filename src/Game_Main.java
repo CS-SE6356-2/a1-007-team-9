@@ -295,13 +295,14 @@ public class Game_Main {
 
     //getting first bets from the players
     public static void makeBet(ArrayList<Player>players){
-        //Getting initial bets from all non dealer players
+        //Getting initial bets from all non dealer player
         for (int i = 0; i < players.size(); i++){
             System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
             while(true){
-                String userinput = input.next(); //TODO change console input to gui input
-                if(IsNumber(userinput)){
-                    int temp = Integer.parseInt(userinput);
+                String betamt = JOptionPane.showInputDialog("enter bet amount");
+                System.out.println(betamt);
+                if(IsNumber(betamt)){
+                    int temp = Integer.parseInt(betamt);
                     if(0 < temp && temp <= players.get(i).money){
                         players.get(i).MakeBet(temp);
                         break;

@@ -12,8 +12,6 @@ public class GUIF {
     private JButton stayButton;
     private JButton SurrenderButton;
     private JButton DoubleButton;
-    private JButton betButton;
-
 
     public GUIF() {
 //        welcomeToBlackJackButton.addActionListener(new ActionListener() { //action listener for buttons to work
@@ -50,15 +48,6 @@ public class GUIF {
                 System.out.println("Double");
             }
         });
-        betButton.addActionListener(new ActionListener() {
-            @Override
-            public  void actionPerformed(ActionEvent e) {
-                String betamt = JOptionPane.showInputDialog("enter bet amount");
-                System.out.println(betamt);
-
-            }
-        });
-
     }
 
     public static void createGui(){
@@ -69,7 +58,6 @@ public class GUIF {
         frame.add(gui.stayButton);
         frame.add(gui.SurrenderButton);
         frame.add(gui.DoubleButton);
-        frame.add(gui.betButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
