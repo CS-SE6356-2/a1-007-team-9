@@ -40,4 +40,14 @@ public class Game_MainTest {
        assertEquals("HEART", testCard.suite.toString());
        assertEquals("ACE",testCard.value.toString());
    }
+
+   @Test
+    public void blackJackTest() {
+        Player testPlayer = new Player(1); //todo
+   }
+
+   @Test
+    public void testDealer() {
+
+   }
 }
