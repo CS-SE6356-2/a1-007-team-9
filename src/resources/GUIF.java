@@ -60,6 +60,7 @@ public class GUIF {
         frame.add(gui.DoubleButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
