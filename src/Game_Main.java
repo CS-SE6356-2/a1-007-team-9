@@ -23,7 +23,7 @@ public class Game_Main {
         int deckNum = 0;
         //Getting the number of decks that the player wished to play with
         while(true){
-            String userInput = input.next();
+            String userInput = input.next(); //TODO change console input to gui input
             if(IsNumber(userInput)){
                 deckNum = Integer.parseInt(userInput);
                 if(0 < deckNum && deckNum < 9){
@@ -43,7 +43,7 @@ public class Game_Main {
         System.out.print("How many players would you like to play with(1-4): ");
         int playerCounter = 0;
         while(true){
-            String userInput = input.next();
+            String userInput = input.next();//TODO change console input to gui input
             if(IsNumber(userInput)){
                 playerCounter = Integer.parseInt(userInput);
                 if(0 < playerCounter && playerCounter < 9){
@@ -72,7 +72,7 @@ public class Game_Main {
         System.out.print("How many round do you wish to play(1-10) ");
         int rounds = 0;
         while(true){
-            String userInput = input.next();
+            String userInput = input.next(); //TODO change console input to gui input
             if(IsNumber(userInput)){
                 rounds = Integer.parseInt(userInput);
                 if(0 < rounds && rounds < 9){
@@ -299,7 +299,7 @@ public class Game_Main {
         for (int i = 0; i < players.size(); i++){
             System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
             while(true){
-                String userinput = input.next();
+                String userinput = input.next(); //TODO change console input to gui input
                 if(IsNumber(userinput)){
                     int temp = Integer.parseInt(userinput);
                     if(0 < temp && temp <= players.get(i).money){
@@ -320,7 +320,7 @@ public class Game_Main {
             System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
             String userinput;
             while(true) {
-                userinput = input.next();
+                userinput = input.next();//TODO change console input to gui input
                 if(userinput == "Y" || userinput == "N"){
                     break;
                 }
