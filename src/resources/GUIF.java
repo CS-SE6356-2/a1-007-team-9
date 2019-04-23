@@ -14,39 +14,38 @@ public class GUIF {
     private JButton DoubleButton;
 
     public GUIF() {
-//        welcomeToBlackJackButton.addActionListener(new ActionListener() { //action listener for buttons to work
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(null,"Hello Players");
-//
-//            }
-//        });
         bgpanel = new JPanel();
 
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("hit");
-                //Game_Main.
+                Player p = Game_Main.getCurrentPlayer();
+                Game_Main.hit(p,Game_Main.deck);
             }
         });
         stayButton.addActionListener(new ActionListener() {
             @Override
             public  void actionPerformed(ActionEvent e) {
                 System.out.println("Stay");
+                Player p = Game_Main.getCurrentPlayer();
+                Game_Main.stand(p,Game_Main.deck);
             }
         });
         SurrenderButton.addActionListener(new ActionListener() {
             @Override
             public  void actionPerformed(ActionEvent e) {
-                System.out.println("Bet");
-
+                System.out.println("surrender");
+                Player p = Game_Main.getCurrentPlayer();
+                Game_Main.surrender(p,Game_Main.deck);
             }
         });
         DoubleButton.addActionListener(new ActionListener() {
             @Override
             public  void actionPerformed(ActionEvent e) {
                 System.out.println("Double");
+                Player p = Game_Main.getCurrentPlayer();
+                Game_Main.doublebet(p,Game_Main.deck);
             }
         });
     }
