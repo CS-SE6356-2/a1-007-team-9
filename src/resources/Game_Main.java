@@ -8,13 +8,14 @@ import java.util.*;
 public class Game_Main {
     static Scanner input = new Scanner(System.in);
     private static Player currentPlayer;
+    public static Deck deck;
     public static void main(String[] args) {
 
         GUIF BlackJackGUI = new GUIF();
         BlackJackGUI.createGui();
 
 
-        Deck deck = new Deck();
+        deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
         System.out.println("Welcome to BlackJack");
         System.out.println();
