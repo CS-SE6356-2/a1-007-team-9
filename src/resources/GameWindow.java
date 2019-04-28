@@ -30,7 +30,7 @@ public class GameWindow {
 	protected JLabel dealerHandLabel; //dealer's hand info
 	protected JLabel roundLabel;
 	protected JLabel playerHandSumLabel;
-	protected JLabel lblBusted;
+	
 	
 	//game methods
 	public void setOutput(String output) {
@@ -60,12 +60,7 @@ public class GameWindow {
 	public void setHandSumLabel(String sum) {
 		this.playerHandSumLabel.setText(sum);
 	}
-	public void showBusted() {
-		lblBusted.setVisible(true);
-	}
-	public void hideBusted() {
-		lblBusted.setVisible(false);
-	}
+	
 	
 	/**
 	 * Launch the application.
@@ -223,9 +218,6 @@ public class GameWindow {
 		playerHandSumLabel.setBounds(598, 448, 61, 16);
 		frmBlackjack.getContentPane().add(playerHandSumLabel);
 		
-		lblBusted = new JLabel("BUSTED");
-		lblBusted.setBounds(530, 476, 61, 16);
-		frmBlackjack.getContentPane().add(lblBusted);
-		lblBusted.setVisible(false);
+		
 	}
 }

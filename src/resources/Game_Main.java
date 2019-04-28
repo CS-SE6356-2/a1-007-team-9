@@ -85,7 +85,7 @@ public class Game_Main {
 
         int rounds = 0;
         while(true){
-            String roundamt = JOptionPane.showInputDialog("How many round do you wish to play(1-10) ");
+            String roundamt = JOptionPane.showInputDialog("How many rounds do you wish to play(1-10) ");
             System.out.println(roundamt);
             if(IsNumber(roundamt)){
                 rounds = Integer.parseInt(roundamt);
@@ -308,12 +308,14 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------
 
     //different move the play can take
-    public static void hit(Player current, Deck deck) { //TODO add a small splash telling the user that they have busted if they do
+    public static void hit(Player current, Deck deck) { 
         current.move = Possible_Moves.HIT;
         current.Play(deck);
         setPlayerHandLabel(current);
         if (current.CheckforBust()) {
-        	BlackJackGUI.showBusted();
+        	//show busted
+        	BustedWindow PlayerBust = new BustedWindow(current);
+        	PlayerBust.setVisible(true);
         }
     }
 
