@@ -123,7 +123,7 @@ public class Game_Main {
                 insurance(players, dealer);
             }
 
-        System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
+//        System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         CheckForBlackJack(players);
 
         for (int i = 0; i < players.size(); i++) {
@@ -134,8 +134,8 @@ public class Game_Main {
 
             while(players.get(i).round_state){
 
-                System.out.println("Player " + (i+1) + " what would you like to do");
-                System.out.println("Your current hand is worth: " + players.get(i).card_sum);
+//                System.out.println("Player " + (i+1) + " what would you like to do");
+//                System.out.println("Your current hand is worth: " + players.get(i).card_sum);
   
                 //BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
                 
