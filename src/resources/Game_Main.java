@@ -69,7 +69,7 @@ public class Game_Main {
         }
 
 
-        StartGame(deck,players);
+        StartGame(deck,players);  //TODO output if players won and how much money they walked away with
         System.out.println("Thanks for playing players won");
         for(int i = 0; i < players.size(); i++){
             System.out.println("Player " + (i+1) + " won: " + players.get(i).money);
@@ -95,7 +95,7 @@ public class Game_Main {
             }
             System.out.print("Invalid input Please enter a valid number between 1 and 10.");
         }
-        for (int i = 0; i < rounds; i++) {
+        for (int i = 0; i < rounds; i++) {//TODO tell players if they won or lost each round
             System.out.println("Welcome to round " + (i+1));
             BlackJackGUI.setRoundLabel(Integer.toString(i +1));
             PrintPlayers(players);
@@ -123,17 +123,17 @@ public class Game_Main {
 
 
         if (dealer.hand.get(0).value == Value.ACE){
-                //insurance(players, dealer);
+                insurance(players, dealer);
             }
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
-        CheckForBlackJack(players,dealer);
+        CheckForBlackJack(players);
 
         for (int i = 0; i < players.size(); i++) {
             currentPlayer = players.get(i);
             BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
             while(players.get(i).round_state){
-                //currentPlayer = players.get(i);
+
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
   
@@ -142,52 +142,7 @@ public class Game_Main {
                 //print player hand
                 setPlayerHandLabel(players.get(i));
 
-            /*
-                int move = 0;
-                while(true){
-                    String playerMove;
-                    System.out.println("1: HIT");
-                    System.out.println("2: STAY");
-                    if(players.get(i).hand.size() == 2){
-                        System.out.println("3: SURRENDER");
-                        if(players.get(i).money >= players.get(i).bet) {
-                            System.out.println("4: DOUBLE");
-                        }
-                    }
-                    playerMove = input.next();
 
-                    if(IsNumber(playerMove)){
-                        int p = Integer.parseInt(playerMove);
-                        if(0 < p & p < 5){
-                            if(p == 3 && players.get(i).hand.size() != 2){
-                                System.out.println("Can't surrender Please enter a valid number between 1 and 4");
-                                continue;
-                            } else if(p == 4 && (players.get(i).hand.size() != 2 || !(players.get(i).money >= players.get(i).bet))){
-                                System.out.println("Can't double Please enter a valid number between 1 and 4");
-                                continue;
-                            }
-                                move = p;
-                            break;
-                        }
-                    }
-                    System.out.println("Please enter a valid number between 1 and 4");
-                }//while loop to get player input
-
-                switch(move){
-                    case 1://Hit
-                        hit(players.get(i),deck);
-                        break;
-                    case 2: //Stand
-                        stand(players.get(i),deck);
-                        break;
-                    case 3://Surrender
-                        surrender(players.get(i),deck);
-                        break;
-                    case 4: // Double
-                        doublebet(players.get(i),deck);
-                        break;
-                }
-                */
             }// while round state
 
         }// for players
@@ -285,7 +240,7 @@ public class Game_Main {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    public static void CheckForBlackJack(ArrayList<Player> players, Player dealer){//checkings a change
+    public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
                     System.out.println("Player " + (i+1) + " has a BlackJack");
@@ -369,7 +324,7 @@ public class Game_Main {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public static void insurance(ArrayList<Player> players, Player dealer){
+    public static void insurance(ArrayList<Player> players, Player dealer){//TODO update player information if bet is paid out or not
         System.out.println("Dealer is currently showing a Ace.");
         dealer.card_sum = 21;
         for(int i = 0; i < players.size(); i++){
@@ -377,41 +332,17 @@ public class Game_Main {
             players.get(i).PrintInformation();
             System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
             String userinput;
+
             while(true) {
-
-                userinput = JOptionPane.showInputDialog("would you like to make a insurance bet: Y or N");
-                if (userinput == "Y" || userinput == "N") {
-                    userinput = input.next();
-                    if (userinput.length() == 1 && (userinput.charAt(0) == 'Y' || userinput.charAt(0) == 'N')) {
-
-                        break;
-                    }
-                    System.out.println("Please enter Y or N");
+                userinput = JOptionPane.showInputDialog("Player " + (i+1) + " would you like to make a insurance bet: Y or N");
+                if (userinput.equals("Y") || userinput.equals("N")) {
+                   break;
                 }//getting user input
             }//while
 
 
-            if(userinput == "Y"){
-                String insamt = JOptionPane.showInputDialog("enter bet amount");
-                System.out.println(insamt);
-                insurance_bet = Integer.parseInt(insamt);
-
-
-            if(userinput.charAt(0) == 'Y') {
-                System.out.print("Player " + (i + 1) + " please enter you bet for your insurance: ");
-                while (true) {
-                    userinput = input.next();
-                    if (IsNumber(userinput)) {
-                        int temp = Integer.parseInt(userinput);
-                        if (0 < temp && temp <= players.get(i).money) {
-                            insurance_bet = temp;
-                            break;
-                        }
-                    }
-                    System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
-                }//getting bet from console
-            }
-
+            if(userinput.equals('Y')){
+                insurance_bet = players.get(i).bet/2;
 
                 if(dealer.card_sum == 21){
                     players.get(i).money += insurance_bet;
