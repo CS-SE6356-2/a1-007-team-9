@@ -9,15 +9,20 @@ public class Game_Main {
     static Scanner input = new Scanner(System.in);
     private static Player currentPlayer;
     public static Deck deck;
+    protected static GameWindow BlackJackGUI;
+    
     public static void main(String[] args) {
 
-        GUIF BlackJackGUI = new GUIF();
-        BlackJackGUI.createGui();
+//        GUIF BlackJackGUI = new GUIF();
+//        BlackJackGUI.createGui();
+    	BlackJackGUI = new GameWindow();
+    	BlackJackGUI.frmBlackjack.setVisible(true);
 
 
         deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
         System.out.println("Welcome to BlackJack");
+        BlackJackGUI.setOutput("Welcome to BlackJack");
         System.out.println();
 
 
@@ -107,6 +112,7 @@ public class Game_Main {
         dealer.DrawInitialHand(deck);
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
+        BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
         if (dealer.hand.get(0).value == Value.ACE){
                 //insurance(players, dealer);
@@ -119,6 +125,7 @@ public class Game_Main {
                 currentPlayer = players.get(i);
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
+                BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString());
 
                 int move = 0;
                 while(true){

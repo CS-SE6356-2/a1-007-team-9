@@ -20,7 +20,12 @@ public class GUIF {
 
     public GUIF() {
         bgpanel = new JPanel();
-
+        hitButton = new JButton();
+        stayButton = new JButton();
+        SurrenderButton = new JButton();
+        DoubleButton = new JButton();
+        
+        
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,14 +60,6 @@ public class GUIF {
         });
 
 
-        textArea1.addActionListener(new ActionListener() {
-            @Override
-        JTextArea getTextArea1;
-        textArea1 = new JTextField[30,30]
-        public void actionPerformed(ActionEvent e) {
-            System.out.println(textArea1);
-                }
-        }):
 
 }
 
@@ -70,11 +67,11 @@ public class GUIF {
         GUIF gui = new GUIF();
         JFrame frame = new JFrame("BlackJack");
         frame.setContentPane(gui.bgpanel);
-        frame.add(gui.hitButton);
-        frame.add(gui.stayButton);
-        frame.add(gui.SurrenderButton);
-        frame.add(gui.DoubleButton);
-        frame.add(gui.textArea1);
+        frame.getContentPane().add(gui.hitButton);
+        frame.getContentPane().add(gui.stayButton);
+        frame.getContentPane().add(gui.SurrenderButton);
+        frame.getContentPane().add(gui.DoubleButton);
+        //frame.add(gui.textArea1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
