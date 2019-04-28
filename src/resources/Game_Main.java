@@ -146,6 +146,12 @@ public class Game_Main {
                 int handSize = players.get(i).hand.size();
                 if (handSize == 0) handSize = 1;
                 BlackJackGUI.setLastDealtCard(players.get(i).hand.get(handSize-1));
+                
+                if(players.get(i).card_sum == 21) {
+                	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
+                    BlackJackPopUp.setVisible(true);
+                    players.get(i).round_state = false;
+                }
 
             }// while round state
 
@@ -247,12 +253,13 @@ public class Game_Main {
         
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
+            	
+//            	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
+//                BlackJackPopUp.setVisible(true);
+
                 players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
                 players.get(i).bet = 0;
                 players.get(i).round_state = false;
-                PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
-                BlackJackPopUp.setVisible(true);
-
             }
         }
     }
