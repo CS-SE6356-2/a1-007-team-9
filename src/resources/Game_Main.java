@@ -242,7 +242,7 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
-        players.get(0).card_sum = 21;
+        
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
                 players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
