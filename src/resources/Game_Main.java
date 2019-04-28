@@ -143,7 +143,8 @@ public class Game_Main {
                 
                 //print player hand
                 setPlayerHandLabel(players.get(i));
-
+                int handSize = players.get(i).hand.size();
+                BlackJackGUI.setLastDealtCard(players.get(i).hand.get(handSize-1));
 
             }// while round state
 
