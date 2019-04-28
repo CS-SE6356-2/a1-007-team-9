@@ -177,19 +177,19 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(lblPlayer);
 		
 		player1Info = new JLabel("");
-		player1Info.setBounds(30, 150, 130, 190);
+		player1Info.setBounds(30, 150, 100, 190);
 		frmBlackjack.getContentPane().add(player1Info);
 		
 		player2Info = new JLabel("");
-		player2Info.setBounds(190, 150, 130, 190);
+		player2Info.setBounds(190, 150, 100, 190);
 		frmBlackjack.getContentPane().add(player2Info);
 		
 		player3Info = new JLabel("");
-		player3Info.setBounds(375, 150, 130, 190);
+		player3Info.setBounds(375, 150, 100, 190);
 		frmBlackjack.getContentPane().add(player3Info);
 		
 		player4Info = new JLabel("");
-		player4Info.setBounds(560, 150, 130, 190);
+		player4Info.setBounds(560, 150, 100, 190);
 		frmBlackjack.getContentPane().add(player4Info);
 		
 		JLabel lblDealer = new JLabel("Dealer");

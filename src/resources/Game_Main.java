@@ -152,6 +152,9 @@ public class Game_Main {
                     BlackJackPopUp.setVisible(true);
                     players.get(i).round_state = false;
                 }
+                else if(players.get(i).card_sum > 21) {
+                	players.get(i).round_state = false;
+                }
 
             }// while round state
 
@@ -296,12 +299,29 @@ public class Game_Main {
     public static void hit(Player current, Deck deck) { 
         current.move = Possible_Moves.HIT;
         current.Play(deck);
+        
         setPlayerHandLabel(current);
+        
+        String playerInfo = current.PrintInformation();
+        int playerNumber = current.playernumer;
+
+        switch(playerNumber) {
+        case 1: BlackJackGUI.setPlayer1Info(playerInfo);
+        		break;
+        case 2: BlackJackGUI.setPlayer2Info(playerInfo);
+        		break;
+        case 3: BlackJackGUI.setPlayer3Info(playerInfo);
+        		break;
+        case 4: BlackJackGUI.setPlayer4Info(playerInfo);
+        		break;
+    }
+        
         if (current.CheckforBust()) {
         	//show busted
         	PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
         	PlayerBust.setVisible(true);
         }
+        
     }
 
     public static void stand(Player current, Deck deck){
