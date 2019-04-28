@@ -46,8 +46,10 @@ public class PopUpWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Player player, String Message) {
+		String text = "";
+		
 		frmBusted = new JFrame();
-		frmBusted.setTitle("Busted");
+		frmBusted.setTitle("");
 		frmBusted.setBounds(100, 100, 450, 300);
 		frmBusted.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -59,8 +61,12 @@ public class PopUpWindow {
 			}
 		});
 		
-		
-		String text = "Player " + player.playernumer + " has " + Message;
+		if (player.playernumer != 0) {
+			text = "Player " + player.playernumer + " has " + Message;
+		}
+		else {
+			text =  "No one has " + Message;
+		}
 		JLabel lblBusted = new JLabel(text, SwingConstants.CENTER);
 		frmBusted.getContentPane().add(lblBusted, BorderLayout.CENTER);
 	}
