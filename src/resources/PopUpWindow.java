@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class BustedWindow {
+public class PopUpWindow {
 
 	private JFrame frmBusted;
 
@@ -22,7 +22,7 @@ public class BustedWindow {
 			public void run() {
 				try {
 					Player testPlayer = new Player(1);
-					BustedWindow window = new BustedWindow(testPlayer);
+					PopUpWindow window = new PopUpWindow(testPlayer, "busted");
 					window.frmBusted.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,8 +34,8 @@ public class BustedWindow {
 	/**
 	 * Create the application.
 	 */
-	public BustedWindow(Player BustedPlayer) {
-		initialize(BustedPlayer);
+	public PopUpWindow(Player Player, String Message) {
+		initialize(Player, Message);
 	}
 	
 	public void setVisible(boolean set) {
@@ -45,7 +45,7 @@ public class BustedWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Player player) {
+	private void initialize(Player player, String Message) {
 		frmBusted = new JFrame();
 		frmBusted.setTitle("Busted");
 		frmBusted.setBounds(100, 100, 450, 300);
@@ -60,7 +60,7 @@ public class BustedWindow {
 		});
 		
 		
-		String text = "Player " + player.playernumer + " has busted";
+		String text = "Player " + player.playernumer + " has " + Message;
 		JLabel lblBusted = new JLabel(text, SwingConstants.CENTER);
 		frmBusted.getContentPane().add(lblBusted, BorderLayout.CENTER);
 	}

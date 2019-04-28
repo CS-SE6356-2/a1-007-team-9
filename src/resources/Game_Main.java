@@ -269,7 +269,7 @@ public class Game_Main {
         setPlayerHandLabel(current);
         if (current.CheckforBust()) {
         	//show busted
-        	BustedWindow PlayerBust = new BustedWindow(current);
+        	PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
         	PlayerBust.setVisible(true);
         }
     }
