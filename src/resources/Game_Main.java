@@ -247,7 +247,21 @@ public class Game_Main {
 
     public static void PrintPlayers(ArrayList<Player> players){
         for (int i = 0; i < players.size(); i++) {
-            players.get(i).PrintInformation();
+        	
+            String playerInfo = players.get(i).PrintInformation();
+            
+            int playerNumber = i + 1;
+            
+            switch(playerNumber) {
+	            case 1: BlackJackGUI.setPlayer1Info(playerInfo);
+	            		break;
+	            case 2: BlackJackGUI.setPlayer2Info(playerInfo);
+	            		break;
+	            case 3: BlackJackGUI.setPlayer3Info(playerInfo);
+	            		break;
+	            case 4: BlackJackGUI.setPlayer4Info(playerInfo);
+	            		break;
+            }
         }
     }
 

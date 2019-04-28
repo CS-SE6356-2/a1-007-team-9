@@ -34,22 +34,22 @@ public class GameWindow {
 		this.outputLabel.setText(output);
 	}
 	public void setPlayer1Info(String info) {
-		this.player1Info.setText(info);
+		this.player1Info.setText("<html>" + info + "</html>");
 	}
 	public void setPlayer2Info(String info) {
-		this.player2Info.setText(info);
+		this.player2Info.setText("<html>" + info + "</html>");
 	}
 	public void setPlayer3Info(String info) {
-		this.player3Info.setText(info);
+		this.player3Info.setText("<html>" + info + "</html>");
 	}
 	public void setPlayer4Info(String info) {
-		this.player4Info.setText(info);
+		this.player4Info.setText("<html>" + info + "</html>");
 	}
 	public void setDealerHand(String hand) {
 		this.dealerHandLabel.setText("<html><div style='text-align: center;'>"+ hand +"</div></html>");
 	}
 	public void setPlayerHand(String hand) {
-		this.handLabel.setText(hand);
+		this.handLabel.setText("<html>" + hand + "</html>");
 	}
 
 	/**
@@ -155,19 +155,19 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(lblPlayer);
 		
 		player1Info = new JLabel("");
-		player1Info.setBounds(27, 149, 127, 187);
+		player1Info.setBounds(30, 150, 130, 190);
 		frmBlackjack.getContentPane().add(player1Info);
 		
 		player2Info = new JLabel("");
-		player2Info.setBounds(182, 149, 136, 187);
+		player2Info.setBounds(190, 150, 130, 190);
 		frmBlackjack.getContentPane().add(player2Info);
 		
 		player3Info = new JLabel("");
-		player3Info.setBounds(375, 149, 136, 187);
+		player3Info.setBounds(375, 150, 130, 190);
 		frmBlackjack.getContentPane().add(player3Info);
 		
 		player4Info = new JLabel("");
-		player4Info.setBounds(552, 148, 127, 209);
+		player4Info.setBounds(560, 150, 130, 190);
 		frmBlackjack.getContentPane().add(player4Info);
 		
 		JLabel lblDealer = new JLabel("Dealer");

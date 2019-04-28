@@ -175,12 +175,16 @@ public class Player {
     //--------------------------------------------------------------------------------------------------------------------
 
         //prints all information on the player
-    public void PrintInformation(){
+    public String PrintInformation(){
+    	String guiInformation = "Player: " + playernumer +"\nPlayers current bet: " + bet + "\nPlayers current money: "+ money;
+    	
         System.out.println();
         System.out.println("Player: " + playernumer);
         System.out.println("Players current bet: " + bet);
         System.out.println("Players current money: " + money);
         PrintHand();
+        
+        return guiInformation;
     }
 
     //---------------------------------------------------------------------------------------------------------------------
