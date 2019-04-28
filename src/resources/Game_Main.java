@@ -140,7 +140,6 @@ public class Game_Main {
                 //BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
                 
                 //print player hand
-            	System.out.println("i is " + i);
                 setPlayerHandLabel(players.get(i));
                 
 //                int handSize = players.get(i).hand.size();
@@ -149,7 +148,7 @@ public class Game_Main {
 
                 
                 if(players.get(i).card_sum == 21) {
-                	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack");
+                	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has BlackJack");
                     BlackJackPopUp.setVisible(true);
                     players.get(i).round_state = false;
                 }
