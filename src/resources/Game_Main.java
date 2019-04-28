@@ -312,6 +312,11 @@ public class Game_Main {
             current.move = Possible_Moves.DOUBLE;
             current.Play(deck);
             setPlayerHandLabel(current);
+            if (current.CheckforBust()) {
+                //show busted
+                PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
+                PlayerBust.setVisible(true);
+            }
         }else{
             //gui splash to say invalid move
         	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
