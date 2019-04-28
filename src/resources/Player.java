@@ -54,7 +54,7 @@ public class Player {
                 System.out.println("Player has Surrendered and is now out of the round");
                 System.out.println();
                 money += bet/2;
-                resetPlayer();
+                round_state = false;
                 break;
 
             case STAND:
