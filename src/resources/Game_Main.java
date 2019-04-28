@@ -92,6 +92,7 @@ public class Game_Main {
         }
         for (int i = 0; i < rounds; i++) {
             System.out.println("Welcome to round " + (i+1));
+            BlackJackGUI.setRoundLabel(Integer.toString(i +1));
             PrintPlayers(players);
             PlayRound(deck, players);
         }
@@ -125,8 +126,12 @@ public class Game_Main {
                 currentPlayer = players.get(i);
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
+                BlackJackGUI.setHandSumLabel(Integer.toString(players.get(i).card_sum));
                 BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
-
+                
+                //print player hand
+                setPlayerHandLabel(players.get(i));
+                
                 int move = 0;
                 while(true){
                     String playerMove;
@@ -301,19 +306,23 @@ public class Game_Main {
     public static void hit(Player current, Deck deck) {
         current.move = Possible_Moves.HIT;
         current.Play(deck);
+        setPlayerHandLabel(current);
     }
 
     public static void stand(Player current, Deck deck){
         current.move = Possible_Moves.STAND;
         current.Play(deck);
+        setPlayerHandLabel(current);
     }
     public static void surrender(Player current, Deck deck) {
         current.move = Possible_Moves.SURRENDER;
         current.Play(deck);
+        setPlayerHandLabel(current);
     }
     public static void doublebet(Player current, Deck deck) {
         current.move = Possible_Moves.DOUBLE;
         current.Play(deck);
+        setPlayerHandLabel(current);
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -366,6 +375,16 @@ public class Game_Main {
 
     public static Player getCurrentPlayer() {
         return currentPlayer;
+    }
+    
+    
+    public static void setPlayerHandLabel(Player currentPlayer) {
+
+        String playerHandString = "";
+        for (int j =0; j< currentPlayer.hand.size(); j++) {
+        	playerHandString += currentPlayer.hand.get(j).value.name() + "-" + currentPlayer.hand.get(j).suite.toString() + "    ";
+        }
+        BlackJackGUI.setPlayerHand(playerHandString);	
     }
 
 }

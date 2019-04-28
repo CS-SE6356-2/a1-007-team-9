@@ -28,6 +28,8 @@ public class GameWindow {
 	protected JLabel player3Info;
 	protected JLabel player4Info;
 	protected JLabel dealerHandLabel; //dealer's hand info
+	protected JLabel roundLabel;
+	protected JLabel playerHandSumLabel;
 	
 	//game methods
 	public void setOutput(String output) {
@@ -50,6 +52,12 @@ public class GameWindow {
 	}
 	public void setPlayerHand(String hand) {
 		this.handLabel.setText("<html>" + hand + "</html>");
+	}
+	public void setRoundLabel(String round) {
+		this.roundLabel.setText(round);
+	}
+	public void setHandSumLabel(String sum) {
+		this.playerHandSumLabel.setText(sum);
 	}
 
 	/**
@@ -135,7 +143,7 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(outputLabel);
 		
 		handLabel = new JLabel("Hand");
-		handLabel.setBounds(302, 435, 148, 42);
+		handLabel.setBounds(190, 423, 286, 42);
 		frmBlackjack.getContentPane().add(handLabel);
 		
 		JLabel lblPlayer1 = new JLabel("Player 1");
@@ -188,7 +196,23 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(lblPassTheScreen);
 		
 		JLabel lblYourHand = new JLabel("Your Hand");
-		lblYourHand.setBounds(302, 422, 85, 16);
+		lblYourHand.setBounds(190, 407, 85, 16);
 		frmBlackjack.getContentPane().add(lblYourHand);
+		
+		JLabel lblRoundTitle = new JLabel("Round: ");
+		lblRoundTitle.setBounds(560, 16, 48, 16);
+		frmBlackjack.getContentPane().add(lblRoundTitle);
+		
+		roundLabel = new JLabel("0");
+		roundLabel.setBounds(620, 16, 61, 16);
+		frmBlackjack.getContentPane().add(roundLabel);
+		
+		JLabel lblHandSum = new JLabel("Hand Sum:");
+		lblHandSum.setBounds(520, 448, 68, 16);
+		frmBlackjack.getContentPane().add(lblHandSum);
+		
+		playerHandSumLabel = new JLabel("0");
+		playerHandSumLabel.setBounds(598, 448, 61, 16);
+		frmBlackjack.getContentPane().add(playerHandSumLabel);
 	}
 }
