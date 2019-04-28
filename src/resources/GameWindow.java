@@ -88,8 +88,9 @@ public class GameWindow {
 	 */
 	private void initialize() {
 		frmBlackjack = new JFrame();
+		frmBlackjack.setResizable(false);
 		frmBlackjack.setTitle("BlackJack");
-		frmBlackjack.setBounds(100, 100, 700, 500);
+		frmBlackjack.setBounds(100, 100, 720, 530);
 		frmBlackjack.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnHit = new JButton("HIT");
