@@ -291,7 +291,9 @@ public class Game_Main {
             current.Play(deck);
             setPlayerHandLabel(current);
         }else{
-            //TODO gui splash to say invalid move
+            //gui splash to say invalid move
+        	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
+        	Invalid.setVisible(true);
         }
     }
 
@@ -301,7 +303,9 @@ public class Game_Main {
             current.Play(deck);
             setPlayerHandLabel(current);
         }else{
-            //TODO gui splash to say invalid move
+            //gui splash to say invalid move
+        	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
+        	Invalid.setVisible(true);
         }
     }
 
