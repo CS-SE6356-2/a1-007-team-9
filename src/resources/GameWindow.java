@@ -31,6 +31,7 @@ public class GameWindow {
 	protected JLabel roundLabel;
 	protected JLabel playerHandSumLabel;
 	protected JLabel playerNumberLabel;
+	protected JLabel lastDeltLabel;
 	
 	
 	//game methods
@@ -63,6 +64,13 @@ public class GameWindow {
 	}
 	public void setPlayerNumber(String number) {
 		this.playerNumberLabel.setText(number);
+	}
+	public void setLastDealtCard(Card lastCard) {
+		String text = lastCard.value +  " " + lastCard.suite.toString();
+		this.lastDeltLabel.setText(text);
+	}
+	public void clearLastCard() {
+		this.lastDeltLabel.setText("");
 	}
 	
 	/**
@@ -220,6 +228,10 @@ public class GameWindow {
 		playerNumberLabel = new JLabel("0");
 		playerNumberLabel.setBounds(74, 436, 61, 16);
 		frmBlackjack.getContentPane().add(playerNumberLabel);
+		
+		lastDeltLabel = new JLabel("");
+		lastDeltLabel.setBounds(30, 464, 91, 16);
+		frmBlackjack.getContentPane().add(lastDeltLabel);
 		
 		
 	}

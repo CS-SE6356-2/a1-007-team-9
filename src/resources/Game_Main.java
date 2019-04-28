@@ -143,7 +143,8 @@ public class Game_Main {
                 
                 //print player hand
                 setPlayerHandLabel(players.get(i));
-
+                int handSize = players.get(i).hand.size();
+                BlackJackGUI.setLastDealtCard(players.get(i).hand.get(handSize-1));
 
             }// while round state
 
@@ -292,7 +293,9 @@ public class Game_Main {
             current.Play(deck);
             setPlayerHandLabel(current);
         }else{
-            //TODO gui splash to say invalid move
+            //gui splash to say invalid move
+        	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
+        	Invalid.setVisible(true);
         }
     }
 
@@ -302,7 +305,9 @@ public class Game_Main {
             current.Play(deck);
             setPlayerHandLabel(current);
         }else{
-            //TODO gui splash to say invalid move
+            //gui splash to say invalid move
+        	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
+        	Invalid.setVisible(true);
         }
     }
 
