@@ -116,31 +116,33 @@ public class Game_Main {
 
 
         dealer.DrawInitialHand(deck);
-<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
-=======
->>>>>>> Final message and insurance:src/Game_Main.java
+
+
         if (dealer.hand.get(0).value == Value.ACE){
-                insurance(players, dealer);
+                //insurance(players, dealer);
             }
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         CheckForBlackJack(players,dealer);
 
         for (int i = 0; i < players.size(); i++) {
+            currentPlayer = players.get(i);
+            BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
             while(players.get(i).round_state){
-                currentPlayer = players.get(i);
+                //currentPlayer = players.get(i);
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
   
-                BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
+                //BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
                 
                 //print player hand
                 setPlayerHandLabel(players.get(i));
-                
+
+            /*
                 int move = 0;
                 while(true){
                     String playerMove;
@@ -185,7 +187,9 @@ public class Game_Main {
                         doublebet(players.get(i),deck);
                         break;
                 }
+                */
             }// while round state
+
         }// for players
 
         //After all of the players have played out their hands dealer goes
@@ -304,7 +308,7 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------
 
     //different move the play can take
-    public static void hit(Player current, Deck deck) {
+    public static void hit(Player current, Deck deck) { //TODO add a small splash telling the user that they have busted if they do
         current.move = Possible_Moves.HIT;
         current.Play(deck);
         setPlayerHandLabel(current);
@@ -317,15 +321,23 @@ public class Game_Main {
     }
 
     public static void surrender(Player current, Deck deck) {
-        current.move = Possible_Moves.SURRENDER;
-        current.Play(deck);
-        setPlayerHandLabel(current);
+        if((current.hand.size() == 2)){//TODO update bet in gui and money in gui
+            current.move = Possible_Moves.SURRENDER;
+            current.Play(deck);
+            setPlayerHandLabel(current);
+        }else{
+            //TODO gui splash to say invalid move
+        }
     }
 
     public static void doublebet(Player current, Deck deck) {
-        current.move = Possible_Moves.DOUBLE;
-        current.Play(deck);
-        setPlayerHandLabel(current);
+        if((current.hand.size() == 2 && (current.money >= current.bet))) {//TODO update bet in gui and money
+            current.move = Possible_Moves.DOUBLE;
+            current.Play(deck);
+            setPlayerHandLabel(current);
+        }else{
+            //TODO gui splash to say invalid move
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -361,39 +373,40 @@ public class Game_Main {
             System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
             String userinput;
             while(true) {
-<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
-                userinput = JOptionPane.showInputDialog("would you like to make a insurance bet: Y or N");
-                if(userinput == "Y" || userinput == "N"){
-=======
-                userinput = input.next();
-                if(userinput.length() == 1 && (userinput.charAt(0) == 'Y' || userinput.charAt(0) == 'N')){
->>>>>>> Final message and insurance:src/Game_Main.java
-                    break;
-                }
-                System.out.println("Please enter Y or N");
-            }//getting user input
 
-<<<<<<< refs/remotes/origin/develop:src/resources/Game_Main.java
+                userinput = JOptionPane.showInputDialog("would you like to make a insurance bet: Y or N");
+                if (userinput == "Y" || userinput == "N") {
+                    userinput = input.next();
+                    if (userinput.length() == 1 && (userinput.charAt(0) == 'Y' || userinput.charAt(0) == 'N')) {
+
+                        break;
+                    }
+                    System.out.println("Please enter Y or N");
+                }//getting user input
+            }//while
+
+
             if(userinput == "Y"){
                 String insamt = JOptionPane.showInputDialog("enter bet amount");
                 System.out.println(insamt);
-                int insurance_bet = Integer.parseInt(insamt);
+                insurance_bet = Integer.parseInt(insamt);
 
-=======
-            if(userinput.charAt(0) == 'Y'){
-                System.out.print("Player " + (i+1) + " please enter you bet for your insurance: ");
-                while(true){
-                        userinput = input.next();
-                        if(IsNumber(userinput)){
-                            int temp = Integer.parseInt(userinput);
-                            if(0 < temp && temp <= players.get(i).money){
-                                insurance_bet = temp;
-                                break;
-                            }
+
+            if(userinput.charAt(0) == 'Y') {
+                System.out.print("Player " + (i + 1) + " please enter you bet for your insurance: ");
+                while (true) {
+                    userinput = input.next();
+                    if (IsNumber(userinput)) {
+                        int temp = Integer.parseInt(userinput);
+                        if (0 < temp && temp <= players.get(i).money) {
+                            insurance_bet = temp;
+                            break;
                         }
-                        System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
+                    }
+                    System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
                 }//getting bet from console
->>>>>>> Final message and insurance:src/Game_Main.java
+            }
+
 
                 if(dealer.card_sum == 21){
                     players.get(i).money += insurance_bet;
