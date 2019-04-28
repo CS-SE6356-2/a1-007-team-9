@@ -30,6 +30,7 @@ public class GameWindow {
 	protected JLabel dealerHandLabel; //dealer's hand info
 	protected JLabel roundLabel;
 	protected JLabel playerHandSumLabel;
+	protected JLabel playerNumberLabel;
 	
 	
 	//game methods
@@ -60,7 +61,9 @@ public class GameWindow {
 	public void setHandSumLabel(String sum) {
 		this.playerHandSumLabel.setText(sum);
 	}
-	
+	public void setPlayerNumber(String number) {
+		this.playerNumberLabel.setText(number);
+	}
 	
 	/**
 	 * Launch the application.
@@ -209,6 +212,14 @@ public class GameWindow {
 		playerHandSumLabel = new JLabel("0");
 		playerHandSumLabel.setBounds(598, 448, 61, 16);
 		frmBlackjack.getContentPane().add(playerHandSumLabel);
+		
+		JLabel lblPlayer_1 = new JLabel("Player ");
+		lblPlayer_1.setBounds(30, 436, 61, 16);
+		frmBlackjack.getContentPane().add(lblPlayer_1);
+		
+		playerNumberLabel = new JLabel("0");
+		playerNumberLabel.setBounds(74, 436, 61, 16);
+		frmBlackjack.getContentPane().add(playerNumberLabel);
 		
 		
 	}

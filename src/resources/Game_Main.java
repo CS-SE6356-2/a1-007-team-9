@@ -131,6 +131,8 @@ public class Game_Main {
 
         for (int i = 0; i < players.size(); i++) {
             currentPlayer = players.get(i);
+            BlackJackGUI.setPlayerNumber(Integer.toString(currentPlayer.playernumer));
+            
             BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
             while(players.get(i).round_state){
 
@@ -245,6 +247,9 @@ public class Game_Main {
             if(players.get(i).card_sum == 21){
                     System.out.println("Player " + (i+1) + " has a BlackJack");
                     players.get(i).round_state = false;
+                    PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "blackjack");
+                    BlackJackPopUp.setVisible(true);
+
             }
         }
     }
