@@ -87,7 +87,7 @@ public class Game_Main {
             System.out.println(roundamt);
             if(IsNumber(roundamt)){
                 rounds = Integer.parseInt(roundamt);
-                if(0 < rounds && rounds < 9){
+                if(0 < rounds && rounds < 11){
                     break;
                 }
             }
@@ -366,17 +366,19 @@ public class Game_Main {
         //Getting initial bets from all non dealer player
         for (int i = 0; i < players.size(); i++){
             System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
-            while(true){
-                String betamt = JOptionPane.showInputDialog("Player " + (i+1) + " please enter a valid bet amount between 1 and " + players.get(i).money);
-                System.out.println(betamt);
-                if(IsNumber(betamt)){
-                    int temp = Integer.parseInt(betamt);
-                    if(0 < temp && temp <= players.get(i).money){
-                        players.get(i).MakeBet(temp);
-                        break;
+            if(players.get(i).money != 0) {
+                while (true) {
+                    String betamt = JOptionPane.showInputDialog("Player " + (i + 1) + " please enter a valid bet amount between 1 and " + players.get(i).money);
+                    System.out.println(betamt);
+                    if (IsNumber(betamt)) {
+                        int temp = Integer.parseInt(betamt);
+                        if (0 < temp && temp <= players.get(i).money) {
+                            players.get(i).MakeBet(temp);
+                            break;
+                        }
                     }
+                    System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
                 }
-                System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
             }
         }// end for loop
     }
