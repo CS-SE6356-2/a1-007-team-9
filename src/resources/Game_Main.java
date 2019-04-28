@@ -144,6 +144,7 @@ public class Game_Main {
                 //print player hand
                 setPlayerHandLabel(players.get(i));
                 int handSize = players.get(i).hand.size();
+                if (handSize == 0) handSize = 1;
                 BlackJackGUI.setLastDealtCard(players.get(i).hand.get(handSize-1));
 
             }// while round state
