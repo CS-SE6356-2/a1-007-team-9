@@ -126,7 +126,7 @@ public class Game_Main {
                 currentPlayer = players.get(i);
                 System.out.println("Player " + (i+1) + " what would you like to do");
                 System.out.println("Your current hand is worth: " + players.get(i).card_sum);
-                BlackJackGUI.setHandSumLabel(Integer.toString(players.get(i).card_sum));
+  
                 BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
                 
                 //print player hand
@@ -385,6 +385,7 @@ public class Game_Main {
         	playerHandString += currentPlayer.hand.get(j).value.name() + "-" + currentPlayer.hand.get(j).suite.toString() + "    ";
         }
         BlackJackGUI.setPlayerHand(playerHandString);	
+        BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
     }
 
 }
