@@ -189,14 +189,6 @@ public class GameWindow {
 		dealerHandLabel.setBounds(295, 73, 107, 36);
 		frmBlackjack.getContentPane().add(dealerHandLabel);
 		
-		JButton btnPassScreen = new JButton("Pass Screen");
-		btnPassScreen.setBounds(6, 443, 117, 29);
-		frmBlackjack.getContentPane().add(btnPassScreen);
-		
-		JLabel lblPassTheScreen = new JLabel("Pass the screen to the next player");
-		lblPassTheScreen.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		lblPassTheScreen.setBounds(6, 423, 220, 16);
-		frmBlackjack.getContentPane().add(lblPassTheScreen);
 		
 		JLabel lblYourHand = new JLabel("Your Hand");
 		lblYourHand.setBounds(190, 407, 85, 16);
