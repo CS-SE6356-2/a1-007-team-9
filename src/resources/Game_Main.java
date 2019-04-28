@@ -41,9 +41,7 @@ public class Game_Main {
 //            System.out.print("Invalid input Please enter a valid number between 1 and 8.");
 //        }
         //creating the additional decks
-        for (int i = 0; i < deckNum; i++){
-            deck.AddDeck(new Deck());
-        }
+
 
 
         //Getting number of players that are playing max 4
@@ -114,7 +112,6 @@ public class Game_Main {
         DealInitialHands(players, deck);
         PrintPlayers(players);
 
-
         dealer.DrawInitialHand(deck);
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
@@ -134,6 +131,7 @@ public class Game_Main {
             BlackJackGUI.setPlayerNumber(Integer.toString(currentPlayer.playernumer));
             
             BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
+
             while(players.get(i).round_state){
 
                 System.out.println("Player " + (i+1) + " what would you like to do");
@@ -146,12 +144,13 @@ public class Game_Main {
                 int handSize = players.get(i).hand.size();
                 if (handSize == 0) handSize = 1;
                 BlackJackGUI.setLastDealtCard(players.get(i).hand.get(handSize-1));
-                
+
+                /*
                 if(players.get(i).card_sum == 21) {
                 	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
                     BlackJackPopUp.setVisible(true);
                     players.get(i).round_state = false;
-                }
+                }*/
 
             }// while round state
 
@@ -250,12 +249,12 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
-        
+        //players.get(0).card_sum = 21;
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
             	
-//            	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
-//                BlackJackPopUp.setVisible(true);
+            	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
+                BlackJackPopUp.setVisible(true);
 
                 players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
                 players.get(i).bet = 0;
