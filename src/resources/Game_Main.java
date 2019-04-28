@@ -312,6 +312,9 @@ public class Game_Main {
         current.move = Possible_Moves.HIT;
         current.Play(deck);
         setPlayerHandLabel(current);
+        if (current.CheckforBust()) {
+        	BlackJackGUI.showBusted();
+        }
     }
 
     public static void stand(Player current, Deck deck){

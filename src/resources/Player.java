@@ -148,17 +148,20 @@ public class Player {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    void CheckforBust(){
+    boolean CheckforBust(){
         if(card_sum > 21){
             round_state = false;
             if(playernumer != 0) {
                 System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
                 System.out.println();
+                return true;
             }else{
                 System.out.println("Dealer has busted");
                 System.out.println();
+                return true;
             }
         }
+        return false;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
