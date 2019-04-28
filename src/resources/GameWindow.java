@@ -23,11 +23,11 @@ public class GameWindow {
 	protected JFrame frmBlackjack;
 	protected JLabel outputLabel;
 	protected JLabel handLabel;
-	protected JLabel player1Info;
+	protected JLabel player1Info; //label for the player game stats like score and revealed card
 	protected JLabel player2Info;
 	protected JLabel player3Info;
 	protected JLabel player4Info;
-	protected JLabel dealerHandLabel;
+	protected JLabel dealerHandLabel; //dealer's hand info
 	
 	//game methods
 	public void setOutput(String output) {
