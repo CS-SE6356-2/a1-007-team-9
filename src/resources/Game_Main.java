@@ -173,15 +173,14 @@ public class Game_Main {
 
                 players.get(i).resetPlayer();
 
-                //player has blackjack
-            }else if(players.get(i).card_sum  == 21 && players.get(i).card_sum != dealer_sum){
-                System.out.println("Player " + (i+1) + " has won with a BlackJack");
+                //player wins gets even money
+            }else if(players.get(i).card_sum == 21 && (players.get(i).hand.size() == 2) ){
+                //player wins gets even money
+                System.out.println("Player " + (i+1) + " won, with a blackjack " );
                 System.out.println();
-
-                players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
                 players.get(i).resetPlayer();
 
-                //player wins gets even money
+                //player pushes and gets
             }else if(players.get(i).card_sum > dealer_sum || (players.get(i).card_sum < 21 && dealer_sum > 21)){
                 //player wins gets even money
                 System.out.println("Player " + (i+1) + " won. They have been paid: " + players.get(i).bet);
@@ -243,12 +242,14 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
+        players.get(0).card_sum = 21;
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
-                    System.out.println("Player " + (i+1) + " has a BlackJack");
-                    players.get(i).round_state = false;
-                    PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "blackjack");
-                    BlackJackPopUp.setVisible(true);
+                players.get(i).money += players.get(i).bet + (players.get(i).bet * 1.5);
+                players.get(i).bet = 0;
+                players.get(i).round_state = false;
+                PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has won with a BlackJack\"");
+                BlackJackPopUp.setVisible(true);
 
             }
         }
