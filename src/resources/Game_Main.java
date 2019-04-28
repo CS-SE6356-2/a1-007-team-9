@@ -95,7 +95,7 @@ public class Game_Main {
             }
             System.out.print("Invalid input Please enter a valid number between 1 and 10.");
         }
-        for (int i = 0; i < rounds; i++) {
+        for (int i = 0; i < rounds; i++) {//TODO tell players if they won or lost each round
             System.out.println("Welcome to round " + (i+1));
             BlackJackGUI.setRoundLabel(Integer.toString(i +1));
             PrintPlayers(players);
@@ -127,7 +127,7 @@ public class Game_Main {
             }
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
-        CheckForBlackJack(players,dealer);
+        CheckForBlackJack(players);
 
         for (int i = 0; i < players.size(); i++) {
             currentPlayer = players.get(i);
@@ -240,7 +240,7 @@ public class Game_Main {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    public static void CheckForBlackJack(ArrayList<Player> players, Player dealer){//checkings a change
+    public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
                     System.out.println("Player " + (i+1) + " has a BlackJack");
