@@ -30,7 +30,7 @@ public class Game_Main {
         int deckNum = 4;
         //Getting the number of decks that the player wished to play with
 //        while(true){
-//            String userInput = input.next(); //TODO change console input to gui input
+//            String userInput = input.next();
 //            if(IsNumber(userInput)){
 //                deckNum = Integer.parseInt(userInput);
 //                if(0 < deckNum && deckNum < 9){
@@ -48,7 +48,7 @@ public class Game_Main {
 //        System.out.print("How many players would you like to play with(1-4): ");
         int playerCounter = 4;
 //        while(true){
-//            String userInput = input.next();//TODO change console input to gui input
+//            String userInput = input.next();
 //            if(IsNumber(userInput)){
 //                playerCounter = Integer.parseInt(userInput);
 //                if(0 < playerCounter && playerCounter < 9){
@@ -67,7 +67,7 @@ public class Game_Main {
         }
 
 
-        StartGame(deck,players);  //TODO output if players won and how much money they walked away with
+        StartGame(deck,players);
         System.out.println("Thanks for playing players won");
         for(int i = 0; i < players.size(); i++){
             System.out.println("Player " + (i+1) + " won: " + players.get(i).money);
@@ -93,7 +93,7 @@ public class Game_Main {
             }
             System.out.print("Invalid input Please enter a valid number between 1 and 10.");
         }
-        for (int i = 0; i < rounds; i++) {//TODO tell players if they won or lost each round
+        for (int i = 0; i < rounds; i++) {
             System.out.println("Welcome to round " + (i+1));
             BlackJackGUI.setRoundLabel(Integer.toString(i +1));
             PrintPlayers(players);
@@ -273,7 +273,7 @@ public class Game_Main {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    public static void CheckForBlackJack(ArrayList<Player> players){//TODO tell players that they have a blackjack
+    public static void CheckForBlackJack(ArrayList<Player> players){
         //players.get(0).card_sum = 21;
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).card_sum == 21){
