@@ -310,7 +310,7 @@ public class Game_Main {
             System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
             if(players.get(i).money != 0) {
                 while (true) {
-                    String betamt = JOptionPane.showInputDialog("Player " + (i + 1) + " please enter a valid bet amount between 1 and " + players.get(i).money + "or 0 if you wish to sit out");
+                    String betamt = JOptionPane.showInputDialog("Player " + (i + 1) + " please enter a valid bet amount between 1 and " + players.get(i).money + " or 0 if you wish to sit out");
                     System.out.println(betamt);
                     if (IsNumber(betamt)) {
                         int temp = Integer.parseInt(betamt);
@@ -375,48 +375,54 @@ public class Game_Main {
         return currentPlayer;
     }
     
-    
+    //sets the player hand label
     public static void setPlayerHandLabel(Player currentPlayer) {
 
         String playerHandString = "";
         for (int j =0; j< currentPlayer.hand.size(); j++) {
         	try {
-        		playerHandString += currentPlayer.hand.get(j).value.name() + "-" + currentPlayer.hand.get(j).suite.toString() + "    ";
+        		playerHandString += currentPlayer.hand.get(j).value.name() + " of " + currentPlayer.hand.get(j).suite.toString() + "s,    ";
         	}catch (Exception e) {
         		System.out.println("whoops");
         		System.out.println(e);
         	}
         }
+
+        playerHandString = playerHandString.toLowerCase();
         BlackJackGUI.setPlayerHand(playerHandString);	
         BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
     }
 
-
+    // sets the dealers initial hand label
     public static void initialDealerHandLabel(Player Dealer){
         String playerHandString = "";
         for (int j =0; j< 1; j++) {
             try {
-                playerHandString += Dealer.hand.get(j).value.name() + "-" + Dealer.hand.get(j).suite.toString() + "    ";
+                playerHandString += Dealer.hand.get(j).value.name() + " of " + Dealer.hand.get(j).suite.toString() + "s,    ";
             }catch (Exception e) {
                 System.out.println("whoops");
                 System.out.println(e);
             }
         }
+
+        playerHandString = playerHandString.toLowerCase();
         BlackJackGUI.setDealerHand(playerHandString);
         BlackJackGUI.setDealerSum(Integer.toString(getCardValue(Dealer.hand.get(0).value)));
     }
 
+    //sets the dealers hand label
     public static void setDealerHandLabel(Player Dealer) {
 
         String playerHandString = "";
         for (int j =0; j< Dealer.hand.size(); j++) {
         	try {
-        		playerHandString += Dealer.hand.get(j).value.name() + "-" + Dealer.hand.get(j).suite.toString() + "    ";
+        		playerHandString += Dealer.hand.get(j).value.name() + " of " + Dealer.hand.get(j).suite.toString() + "s,    ";
         	}catch (Exception e) {
         		System.out.println("whoops");
         		System.out.println(e);
         	}
         }
+        playerHandString = playerHandString.toLowerCase();
         BlackJackGUI.setDealerHand(playerHandString);	
         BlackJackGUI.setDealerSum(Integer.toString(Dealer.card_sum));
     }
