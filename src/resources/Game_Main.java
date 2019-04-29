@@ -402,7 +402,7 @@ public class Game_Main {
 
             while(true) {
                 userinput = JOptionPane.showInputDialog("Player " + (i+1) + " would you like to make a insurance bet: Y or N");
-                userinput.toUpperCase();
+                userinput = userinput.toUpperCase();
                 if (userinput.equals("Y") || userinput.equals("N")) {
                    break;
                 }//getting user input
