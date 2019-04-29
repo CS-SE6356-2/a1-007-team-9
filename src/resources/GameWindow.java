@@ -32,7 +32,6 @@ public class GameWindow {
 	protected JLabel playerHandSumLabel;
 	protected JLabel playerNumberLabel;
 	protected JLabel lastDeltLabel;
-	protected JLabel dealerTotalLabel;
 	
 	protected JButton btnHit;
 	protected JButton btnStay;
@@ -42,9 +41,6 @@ public class GameWindow {
 	//game methods
 	public void setOutput(String output) {
 		this.outputLabel.setText(output);
-	}
-	public void setDealerSum(String info) {
-		this.dealerTotalLabel.setText("<html>" + info + "</html>");
 	}
 	public void setPlayer1Info(String info) {
 		this.player1Info.setText("<html>" + info + "</html>");
@@ -208,11 +204,11 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(player4Info);
 		
 		JLabel lblDealer = new JLabel("Dealer");
-		lblDealer.setBounds(302, 54, 48, 16);
+		lblDealer.setBounds(302, 54, 100, 16);
 		frmBlackjack.getContentPane().add(lblDealer);
 		
 		dealerHandLabel = new JLabel("");
-		dealerHandLabel.setBounds(215, 73, 226, 42);
+		dealerHandLabel.setBounds(295, 73, 107, 36);
 		frmBlackjack.getContentPane().add(dealerHandLabel);
 		
 		
@@ -247,10 +243,6 @@ public class GameWindow {
 		lastDeltLabel = new JLabel("");
 		lastDeltLabel.setBounds(30, 464, 91, 16);
 		frmBlackjack.getContentPane().add(lastDeltLabel);
-		
-		dealerTotalLabel = new JLabel("");
-		dealerTotalLabel.setBounds(362, 54, 61, 16);
-		frmBlackjack.getContentPane().add(dealerTotalLabel);
 		
 		
 	}
