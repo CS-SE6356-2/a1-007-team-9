@@ -105,9 +105,6 @@ public class Game_Main {
                     BlackJackPopUp.setVisible(true);
                     players.get(i).round_state = false;
                 }
-                else if(players.get(i).card_sum > 21) {
-                	players.get(i).round_state = false;
-                }
 
             }// while round state
             setDealerHandLabel(players.get(0));
