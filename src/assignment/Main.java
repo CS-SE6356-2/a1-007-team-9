@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         new NamePrinter().printNames();
+        //run the blackJack game in the Game_Main.java in resources
     }
 }
 

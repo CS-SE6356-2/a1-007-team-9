@@ -3,20 +3,10 @@ package resources;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-//import com.jgoodies.forms.layout.FormLayout;
-//import com.jgoodies.forms.layout.ColumnSpec;
-//import com.jgoodies.forms.layout.RowSpec;
-//import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
 
 public class GameWindow {
 
@@ -32,11 +22,13 @@ public class GameWindow {
 	protected JLabel playerHandSumLabel;
 	protected JLabel playerNumberLabel;
 	protected JLabel lastDeltLabel;
+	protected JLabel dealerTotalLabel;
 	
 	protected JButton btnHit;
 	protected JButton btnStay;
 	protected JButton btnSurrender;
 	protected JButton btnDouble;
+	
 	
 	//game methods
 	public void setOutput(String output) {
@@ -56,6 +48,9 @@ public class GameWindow {
 	}
 	public void setDealerHand(String hand) {
 		this.dealerHandLabel.setText("<html><div style='text-align: center;'>"+ hand +"</div></html>");
+	}
+	public void setDealerSum(String info) {
+		this.dealerTotalLabel.setText("<html>" + info + "</html>");
 	}
 	public void setPlayerHand(String hand) {
 		this.handLabel.setText("<html>" + hand + "</html>");
@@ -204,11 +199,11 @@ public class GameWindow {
 		frmBlackjack.getContentPane().add(player4Info);
 		
 		JLabel lblDealer = new JLabel("Dealer");
-		lblDealer.setBounds(302, 54, 100, 16);
+		lblDealer.setBounds(302, 54, 48, 16);
 		frmBlackjack.getContentPane().add(lblDealer);
 		
 		dealerHandLabel = new JLabel("");
-		dealerHandLabel.setBounds(295, 73, 107, 36);
+		dealerHandLabel.setBounds(215, 73, 226, 42);
 		frmBlackjack.getContentPane().add(dealerHandLabel);
 		
 		
@@ -244,6 +239,8 @@ public class GameWindow {
 		lastDeltLabel.setBounds(30, 464, 91, 16);
 		frmBlackjack.getContentPane().add(lastDeltLabel);
 		
-		
+		dealerTotalLabel = new JLabel("");
+		dealerTotalLabel.setBounds(362, 54, 61, 16);
+		frmBlackjack.getContentPane().add(dealerTotalLabel);
 	}
 }
