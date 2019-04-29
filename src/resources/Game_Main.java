@@ -121,8 +121,9 @@ public class Game_Main {
         dealer.DrawInitialHand(deck);
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
-        BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
-
+        BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite + ", " + dealer.hand.get(1).value + " " + dealer.hand.get(1).suite);
+        
+        setDealerHandLabel(players.get(0));
 
 
         if (dealer.hand.get(0).value == Value.ACE){
@@ -160,7 +161,7 @@ public class Game_Main {
                 }
 
             }// while round state
-
+            setDealerHandLabel(players.get(0));
         }// for players
 
         //After all of the players have played out their hands dealer goes
@@ -446,6 +447,20 @@ public class Game_Main {
         }
         BlackJackGUI.setPlayerHand(playerHandString);	
         BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
+    }
+    public static void setDealerHandLabel(Player Dealer) {
+
+        String playerHandString = "";
+        for (int j =0; j< Dealer.hand.size(); j++) {
+        	try {
+        		playerHandString += Dealer.hand.get(j).value.name() + "-" + Dealer.hand.get(j).suite.toString() + "    ";
+        	}catch (Exception e) {
+        		System.out.println("whoops");
+        		System.out.println(e);
+        	}
+        }
+        BlackJackGUI.setDealerHand(playerHandString);	
+        BlackJackGUI.setDealerSum(Integer.toString(Dealer.card_sum));
     }
 
 }
