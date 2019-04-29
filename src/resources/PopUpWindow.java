@@ -61,11 +61,11 @@ public class PopUpWindow {
 			}
 		});
 		
-		if (player.playernumer == -1) {
+		if (player.playernumber == -1) {
 			text = "Game Over";
 		}
-		else if (player.playernumer != 0) {
-			text = "Player " + player.playernumer + " has " + Message;
+		else if (player.playernumber != 0) {
+			text = "Player " + player.playernumber + " has " + Message;
 		}
 		else {
 			text =  "No one has " + Message;

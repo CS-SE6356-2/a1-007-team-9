@@ -6,23 +6,19 @@ import javax.swing.*;
 import java.util.*;
 
 public class Game_Main {
-    static Scanner input = new Scanner(System.in);
     private static Player currentPlayer;
     public static Deck deck;
     protected static GameWindow BlackJackGUI;
     
     public static void main(String[] args) {
-
     	BlackJackGUI = new GameWindow();
     	BlackJackGUI.frmBlackjack.setVisible(true);
-
 
         deck = new Deck();
         ArrayList<Player> players = new ArrayList<Player>();
         System.out.println("Welcome to BlackJack");
         BlackJackGUI.setOutput("Welcome to BlackJack");
         System.out.println();
-
 
         int playerCounter = 4;
 
@@ -33,7 +29,6 @@ public class Game_Main {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).PrintInformation();
         }
-
 
         StartGame(deck,players);
         System.out.println("Thanks for playing players won");
@@ -97,7 +92,7 @@ public class Game_Main {
 
         for (int i = 0; i < players.size(); i++) {
             currentPlayer = players.get(i);
-            BlackJackGUI.setPlayerNumber(Integer.toString(currentPlayer.playernumer));
+            BlackJackGUI.setPlayerNumber(Integer.toString(currentPlayer.playernumber));
             
             BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
 
@@ -125,18 +120,15 @@ public class Game_Main {
         }
 
         Player Winner = CheckforWinners(players, dealer);
-       // System.out.println(Winner.playernumer);
-        
+
         if(Winner != null) {
         	 PopUpWindow WinnerFrame = new PopUpWindow(Winner, "won the round");
              WinnerFrame.setVisible(true);
-        }
-        else {
-        	Player NoOne = new Player(0);
-        	PopUpWindow WinnerFrame = new PopUpWindow(NoOne, "won the round");
+        } else {
+            Player NoOne = new Player(0);
+            PopUpWindow WinnerFrame = new PopUpWindow(NoOne, "won the round");
             WinnerFrame.setVisible(true);
         }
-       
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -261,7 +253,7 @@ public class Game_Main {
         setPlayerHandLabel(current);
         
         String playerInfo = current.PrintInformation();
-        int playerNumber = current.playernumer;
+        int playerNumber = current.playernumber;
 
         switch(playerNumber) {
         case 1: BlackJackGUI.setPlayer1Info(playerInfo);
@@ -274,7 +266,7 @@ public class Game_Main {
         		break;
     }
         
-        if (current.CheckforBust()) {
+        if (current.CheckForBust()) {
         	//show busted
         	PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
         	PlayerBust.setVisible(true);
@@ -305,7 +297,7 @@ public class Game_Main {
             current.move = Possible_Moves.DOUBLE;
             current.Play(deck);
             setPlayerHandLabel(current);
-            if (current.CheckforBust()) {
+            if (current.CheckForBust()) {
                 //show busted
                 PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
                 PlayerBust.setVisible(true);
