@@ -86,6 +86,7 @@ public class Game_Main {
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
+        
         if (dealer.hand.get(0).value == Value.ACE){
                 insurance(players, dealer);
             }
@@ -194,16 +195,7 @@ public class Game_Main {
             
             int playerNumber = i + 1;
             
-            switch(playerNumber) {
-	            case 1: BlackJackGUI.setPlayer1Info(playerInfo);
-	            		break;
-	            case 2: BlackJackGUI.setPlayer2Info(playerInfo);
-	            		break;
-	            case 3: BlackJackGUI.setPlayer3Info(playerInfo);
-	            		break;
-	            case 4: BlackJackGUI.setPlayer4Info(playerInfo);
-	            		break;
-            }
+            updatePlayersLabels(players.get(i));
         }
     }
 
@@ -242,21 +234,7 @@ public class Game_Main {
         current.move = Possible_Moves.HIT;
         current.Play(deck);
         
-        setPlayerHandLabel(current);
-        
-        String playerInfo = current.PrintInformation();
-        int playerNumber = current.playernumber;
-
-        switch(playerNumber) {
-        case 1: BlackJackGUI.setPlayer1Info(playerInfo);
-        		break;
-        case 2: BlackJackGUI.setPlayer2Info(playerInfo);
-        		break;
-        case 3: BlackJackGUI.setPlayer3Info(playerInfo);
-        		break;
-        case 4: BlackJackGUI.setPlayer4Info(playerInfo);
-        		break;
-    }
+        updatePlayersLabels(current);
         
         if (current.CheckForBust()) {
         	//show busted
@@ -288,8 +266,9 @@ public class Game_Main {
         if((current.hand.size() == 2 && (current.money >= current.bet))) {//TODO update bet in gui and money
             current.move = Possible_Moves.DOUBLE;
             current.Play(deck);
-            setPlayerHandLabel(current);
-            if (current.CheckForBust()) {
+            updatePlayersLabels(current);
+
+            if (current.CheckForBust()){
                 //show busted
                 PopUpWindow PlayerBust = new PopUpWindow(current, "busted");
                 PlayerBust.setVisible(true);
@@ -298,6 +277,23 @@ public class Game_Main {
             //gui splash to say invalid move
         	PopUpWindow Invalid = new PopUpWindow(current, "made an invalid move");
         	Invalid.setVisible(true);
+        }
+    }
+
+    static void updatePlayersLabels(Player current){
+        setPlayerHandLabel(current);
+        String playerInfo = current.PrintInformation();
+        int playerNumber = current.playernumber;
+
+        switch(playerNumber) {
+            case 1: BlackJackGUI.setPlayer1Info(playerInfo);
+                break;
+            case 2: BlackJackGUI.setPlayer2Info(playerInfo);
+                break;
+            case 3: BlackJackGUI.setPlayer3Info(playerInfo);
+                break;
+            case 4: BlackJackGUI.setPlayer4Info(playerInfo);
+                break;
         }
     }
 
@@ -333,11 +329,10 @@ public class Game_Main {
 
     public static void insurance(ArrayList<Player> players, Player dealer){//TODO update player information if bet is paid out or not
         System.out.println("Dealer is currently showing a Ace.");
-        dealer.card_sum = 21;
         for(int i = 0; i < players.size(); i++){
             int insurance_bet = 0;
             players.get(i).PrintInformation();
-            System.out.println("Player " + i+1 + " would you like to make a insurance bet: Y or N");
+            System.out.println("Player " + (i+1) + " would you like to make a insurance bet: Y or N");
             String userinput;
 
             while(true) {
@@ -349,25 +344,28 @@ public class Game_Main {
             }//while
 
 
-            if(userinput.equals('Y')){
+            if(userinput.equals("Y")){
                 insurance_bet = players.get(i).bet/2;
-
-                if(dealer.card_sum == 21){
-                    players.get(i).money += insurance_bet;
-                    players.get(i).round_state = false;
-                }else{
-                    players.get(i).money -= insurance_bet;
-                }
+                System.out.println("Player " + (i+1) + "insurance bet is" + insurance_bet);
             }//Yes to insurance
+            if(dealer.card_sum == 21){
+                players.get(i).money += insurance_bet;
+                players.get(i).round_state = false;
+            }else{
+                players.get(i).money -= insurance_bet;
+            }
 
         }//player loop
 
         if(dealer.card_sum == 21){
-            System.out.println("Dealer has a BlackJack insurance is paid out");
+            System.out.println("Dealer has a BlackJack insurance is paid out"); //TODO tell player if dealer has blackjack or not
             System.out.println();
         }else{
             System.out.println("Dealer did not have a BlackJack insurance is collected");
             System.out.println();
+        }
+        for(int i = 0; i < players.size(); i++){
+            updatePlayersLabels(players.get(i));
         }
     }//insurance
 
