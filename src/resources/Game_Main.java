@@ -137,6 +137,8 @@ public class Game_Main {
                 //player wins gets even money
             }else if(players.get(i).card_sum == 21 && (players.get(i).hand.size() == 2) ){
                 //player wins gets even money
+            	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has BlackJack");
+            	BlackJackPopUp.setVisible(true);
                 System.out.println("Player " + (i+1) + " won, with a blackjack " );
                 System.out.println();
                 players.get(i).resetPlayer();
