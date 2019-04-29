@@ -179,8 +179,8 @@ public class Player {
 
         //prints all information on the player
     public String PrintInformation(){
-    	String guiInformation = "Player: " + playernumber +" Current bet: " + bet + "\nMoney: "+ money + "\nHand: " + card_sum;
-    	
+    	String guiInformation = "Current bet: " + bet + "\nMoney: "+ money + "\nHand: " + card_sum;
+
         System.out.println();
         System.out.println("Player: " + playernumber);
         System.out.println("Players current bet: " + bet);

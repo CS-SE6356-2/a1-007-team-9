@@ -1,21 +1,17 @@
 package resources;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class GUIF {
     private JPanel Home;
-    private JButton welcomeToBlackJackButton;
     private JPanel bgpanel;
     private JButton hitButton;
     private JButton stayButton;
     private JButton SurrenderButton;
     private JButton DoubleButton;
-    private JTextArea textArea1;
-
 
 
     public GUIF() {
@@ -71,7 +67,6 @@ public class GUIF {
         frame.getContentPane().add(gui.stayButton);
         frame.getContentPane().add(gui.SurrenderButton);
         frame.getContentPane().add(gui.DoubleButton);
-        //frame.add(gui.textArea1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
