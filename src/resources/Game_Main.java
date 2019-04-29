@@ -80,6 +80,8 @@ public class Game_Main {
         PrintPlayers(players);
 
         dealer.DrawInitialHand(deck);
+        initialDealerHandLabel(dealer);
+
 
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
@@ -100,40 +102,27 @@ public class Game_Main {
                 //print player hand
                 setPlayerHandLabel(players.get(i));
                 
-                if(players.get(i).card_sum == 21) {
-                	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has BlackJack");
-                    BlackJackPopUp.setVisible(true);
-                    players.get(i).round_state = false;
-                }
-                else if(players.get(i).card_sum > 21) {
-                	players.get(i).round_state = false;
-                }
+
 
             }// while round state
-            setDealerHandLabel(players.get(0));
         }// for players
 
         //After all of the players have played out their hands dealer goes
         //dealer will play until they have at least a 17 card sum
         while(dealer.card_sum < 17){
             dealer.DrawCard(deck);
+            setDealerHandLabel(dealer);
         }
+        setDealerHandLabel(dealer);
 
-        Player Winner = CheckforWinners(players, dealer);
+        CheckforWinners(players, dealer);
 
-        if(Winner != null) {
-        	 PopUpWindow WinnerFrame = new PopUpWindow(Winner, "won the round");
-             WinnerFrame.setVisible(true);
-        } else {
-            Player NoOne = new Player(0);
-            PopUpWindow WinnerFrame = new PopUpWindow(NoOne, "won the round");
-            WinnerFrame.setVisible(true);
-        }
+
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    static Player CheckforWinners(ArrayList<Player> players, Player dealer){
+    static void CheckforWinners(ArrayList<Player> players, Player dealer){
         int dealer_sum = dealer.card_sum;
         System.out.println("Dealers sum is: " + dealer_sum);
         for (int i = 0; i < players.size(); i++) {
@@ -151,7 +140,7 @@ public class Game_Main {
                 System.out.println("Player " + (i+1) + " won, with a blackjack " );
                 System.out.println();
                 players.get(i).resetPlayer();
-                return players.get(i);
+
 
                 //player pushes and gets
             }else if(players.get(i).card_sum > dealer_sum || (players.get(i).card_sum < 21 && dealer_sum > 21)){
@@ -161,7 +150,7 @@ public class Game_Main {
 
                 players.get(i).money += (players.get(i).bet*2);
                 players.get(i).resetPlayer();
-                return players.get(i);
+
 
                 //player pushes and gets
             }else if(players.get(i).card_sum == dealer_sum){
@@ -171,7 +160,7 @@ public class Game_Main {
 
                 players.get(i).money += players.get(i).bet;
                 players.get(i).resetPlayer();
-                return players.get(i);
+
 
             }else{
                 //player loses and loses bet
@@ -179,10 +168,11 @@ public class Game_Main {
                 System.out.println();
 
                 players.get(i).resetPlayer();
+                dealer.resetPlayer();
 
             }
         }
-        return null;
+
     }//check for winner
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -394,7 +384,22 @@ public class Game_Main {
         BlackJackGUI.setPlayerHand(playerHandString);	
         BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
     }
-    
+
+
+    public static void initialDealerHandLabel(Player Dealer){
+        String playerHandString = "";
+        for (int j =0; j< 1; j++) {
+            try {
+                playerHandString += Dealer.hand.get(j).value.name() + "-" + Dealer.hand.get(j).suite.toString() + "    ";
+            }catch (Exception e) {
+                System.out.println("whoops");
+                System.out.println(e);
+            }
+        }
+        BlackJackGUI.setDealerHand(playerHandString);
+        BlackJackGUI.setDealerSum(Integer.toString(getCardValue(Dealer.hand.get(0).value)));
+    }
+
     public static void setDealerHandLabel(Player Dealer) {
 
         String playerHandString = "";
@@ -415,5 +420,38 @@ public class Game_Main {
          	players.get(i).hand = new ArrayList<Card>();
          }
     }
-}
+
+    public static int getCardValue(Value value){
+        switch (value){
+            case ACE:
+                return 11;
+            case TWO:
+                return 2;
+            case THREE:
+                return 3;
+            case FOUR:
+                return 4;
+            case FIVE:
+                return 5;
+            case SIX:
+                return 6;
+            case SEVEN:
+                return 7;
+            case EIGHT:
+                return 8;
+            case NINE:
+                return 9;
+            case TEN:
+                return 10;
+            case JACK:
+                return 10;
+            case QUEEN:
+                return 10;
+            case KING:
+                return 10;
+        }
+        return 0;
+        }
+    }
+
 
