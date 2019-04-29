@@ -69,9 +69,11 @@ public class Player {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public void DrawInitialHand(Deck deck){
-        DrawCard(deck);
-        DrawCard(deck);
-        CheckForBust();
+        if(round_state) {
+            DrawCard(deck);
+            DrawCard(deck);
+            CheckForBust();
+        }
 
     }
 

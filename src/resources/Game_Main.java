@@ -310,18 +310,22 @@ public class Game_Main {
             System.out.print("Player " + (i+1) + " please enter you bet for this round: ");
             if(players.get(i).money != 0) {
                 while (true) {
-                    String betamt = JOptionPane.showInputDialog("Player " + (i + 1) + " please enter a valid bet amount between 1 and " + players.get(i).money);
+                    String betamt = JOptionPane.showInputDialog("Player " + (i + 1) + " please enter a valid bet amount between 1 and " + players.get(i).money + "or 0 if you wish to sit out");
                     System.out.println(betamt);
                     if (IsNumber(betamt)) {
                         int temp = Integer.parseInt(betamt);
-                        if (0 < temp && temp <= players.get(i).money) {
+                        if (0 <= temp && temp <= players.get(i).money) {
                             players.get(i).MakeBet(temp);
+                            if(temp == 0){
+                                players.get(i).round_state = false;
+                            }
                             break;
                         }
                     }
                     System.out.print("Please enter a valid number between 1 and " + players.get(i).money + ": ");
                 }
             }
+
         }// end for loop
     }
 
