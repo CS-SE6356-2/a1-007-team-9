@@ -99,6 +99,12 @@ public class Game_Main {
             PrintPlayers(players);
             PlayRound(deck, players);
         }
+        
+        BlackJackGUI.disableBtns();
+        Player GameOver = new Player(-1);
+        PopUpWindow GameOverFrame = new PopUpWindow(GameOver, "");
+        GameOverFrame.setVisible(true);
+        
         return;
     }
 

@@ -33,6 +33,10 @@ public class GameWindow {
 	protected JLabel playerNumberLabel;
 	protected JLabel lastDeltLabel;
 	
+	protected JButton btnHit;
+	protected JButton btnStay;
+	protected JButton btnSurrender;
+	protected JButton btnDouble;
 	
 	//game methods
 	public void setOutput(String output) {
@@ -73,6 +77,13 @@ public class GameWindow {
 		this.lastDeltLabel.setText("");
 	}
 	
+	public void disableBtns() {
+		this.btnHit.setEnabled(false);
+		this.btnStay.setEnabled(false);
+		this.btnSurrender.setEnabled(false);
+		this.btnDouble.setEnabled(false);
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -106,7 +117,7 @@ public class GameWindow {
 		frmBlackjack.setBounds(100, 100, 720, 530);
 		frmBlackjack.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton btnHit = new JButton("HIT");
+		btnHit = new JButton("HIT");
 		btnHit.setBounds(60, 369, 75, 29);
 		btnHit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,7 +129,7 @@ public class GameWindow {
 		frmBlackjack.getContentPane().setLayout(null);
 		frmBlackjack.getContentPane().add(btnHit);
 		
-		JButton btnStay = new JButton("STAY");
+		btnStay = new JButton("STAY");
 		btnStay.setBounds(215, 369, 76, 29);
 		frmBlackjack.getContentPane().add(btnStay);
 		btnStay.addActionListener(new ActionListener() {
@@ -130,7 +141,7 @@ public class GameWindow {
 		});
 		
 		
-		JButton btnSurrender = new JButton("SURRENDER");
+		btnSurrender = new JButton("SURRENDER");
 		btnSurrender.setBounds(388, 369, 118, 29);
 		frmBlackjack.getContentPane().add(btnSurrender);
 		btnSurrender.addActionListener(new ActionListener() {
@@ -141,7 +152,7 @@ public class GameWindow {
 			}
 		});
 		
-		JButton btnDouble = new JButton("DOUBLE");
+		btnDouble = new JButton("DOUBLE");
 		btnDouble.setBounds(585, 369, 94, 29);
 		frmBlackjack.getContentPane().add(btnDouble);
 		btnDouble.addActionListener(new ActionListener() {
