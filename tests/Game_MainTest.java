@@ -19,7 +19,7 @@ public class Game_MainTest {
         TestPlayers.add(TestPlayer1);
         TestPlayers.add(TestPlayer2);
 
-        Game_Main.DealInitialHands(TestPlayers, TestDeck);
+      //  Game_Main.hit(TestPlayers, TestDeck); todo
 
 
         assertEquals(2, TestPlayer1.hand.size());
@@ -39,5 +39,15 @@ public class Game_MainTest {
 
        assertEquals("HEART", testCard.suite.toString());
        assertEquals("ACE",testCard.value.toString());
+   }
+
+   @Test
+    public void blackJackTest() {
+        Player testPlayer = new Player(1); //todo
+   }
+
+   @Test
+    public void testDealer() {
+
    }
 }

@@ -54,7 +54,7 @@ public class Player {
                 System.out.println("Player has Surrendered and is now out of the round");
                 System.out.println();
                 money += bet/2;
-                resetPlayer();
+                round_state = false;
                 break;
 
             case STAND:
@@ -148,17 +148,20 @@ public class Player {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    void CheckforBust(){
+    boolean CheckforBust(){
         if(card_sum > 21){
             round_state = false;
             if(playernumer != 0) {
                 System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
                 System.out.println();
+                return true;
             }else{
                 System.out.println("Dealer has busted");
                 System.out.println();
+                return true;
             }
         }
+        return false;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
@@ -175,12 +178,16 @@ public class Player {
     //--------------------------------------------------------------------------------------------------------------------
 
         //prints all information on the player
-    public void PrintInformation(){
+    public String PrintInformation(){
+    	String guiInformation = "Player: " + playernumer +"\nCurrent bet: " + bet + "\nMoney: "+ money + "\nHand: " + card_sum;
+    	
         System.out.println();
         System.out.println("Player: " + playernumer);
         System.out.println("Players current bet: " + bet);
         System.out.println("Players current money: " + money);
         PrintHand();
+        
+        return guiInformation;
     }
 
     //---------------------------------------------------------------------------------------------------------------------
