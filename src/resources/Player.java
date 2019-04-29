@@ -5,7 +5,7 @@ package resources;
 import java.util.ArrayList;
 
 public class Player {
-    int playernumer;
+    int playernumber;
     public ArrayList<Card> hand; // The players current hand
     public Possible_Moves move;
     public Boolean game_state; // True = int, False = out of the game
@@ -19,7 +19,7 @@ public class Player {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public Player(int num){
-        playernumer = num;
+        playernumber = num;
         card_sum = 0;
         money = 1000;
         bet = 0;
@@ -37,7 +37,7 @@ public class Player {
                 DrawCard(deck);
                 PrintInformation();
                 System.out.println();
-                CheckforBust();
+                CheckForBust();
                 break;
 
             case DOUBLE:
@@ -46,7 +46,7 @@ public class Player {
                 bet = bet*2;
                 round_state = false;
                 DrawCard(deck);
-                CheckforBust();
+                CheckForBust();
                 PrintInformation();
                 break;
 
@@ -71,7 +71,7 @@ public class Player {
     public void DrawInitialHand(Deck deck){
         DrawCard(deck);
         DrawCard(deck);
-        CheckforBust();
+        CheckForBust();
 
     }
 
@@ -148,10 +148,10 @@ public class Player {
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    boolean CheckforBust(){
+    boolean CheckForBust(){
         if(card_sum > 21){
             round_state = false;
-            if(playernumer != 0) {
+            if(playernumber != 0) {
                 System.out.println("Player has busted with a " + card_sum + " Player is out of this round");
                 System.out.println();
                 return true;
@@ -179,10 +179,10 @@ public class Player {
 
         //prints all information on the player
     public String PrintInformation(){
-    	String guiInformation = "Player: " + playernumer +"\nCurrent bet: " + bet + "\nMoney: "+ money + "\nHand: " + card_sum;
-    	
+    	String guiInformation = "Current bet: " + bet + "\nMoney: "+ money + "\nHand: " + card_sum;
+
         System.out.println();
-        System.out.println("Player: " + playernumer);
+        System.out.println("Player: " + playernumber);
         System.out.println("Players current bet: " + bet);
         System.out.println("Players current money: " + money);
         PrintHand();
