@@ -36,9 +36,18 @@ public class Deck {
     //---------------------------------------------------------------------------------------------------------------------------
 
     public Card Draw(){
-        Card drawn = this.cards.get(this.cards.size()-1);
-        this.cards.remove(drawn);
-        return drawn;
+    	try {
+    		Card drawn = this.cards.get(this.cards.size()-1);
+	        this.cards.remove(drawn);
+	        return drawn;
+    	}catch (Exception e) {
+    		Deck AddDeck = new Deck();
+    		this.AddDeck(AddDeck);
+    		Card drawn = this.cards.get(this.cards.size()-1);
+	        this.cards.remove(drawn);
+	        return drawn;
+    	}
+       
     }
 
     //---------------------------------------------------------------------------------------------------------------------------

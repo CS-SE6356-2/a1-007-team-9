@@ -434,7 +434,12 @@ public class Game_Main {
 
         String playerHandString = "";
         for (int j =0; j< currentPlayer.hand.size(); j++) {
-        	playerHandString += currentPlayer.hand.get(j).value.name() + "-" + currentPlayer.hand.get(j).suite.toString() + "    ";
+        	try {
+        		playerHandString += currentPlayer.hand.get(j).value.name() + "-" + currentPlayer.hand.get(j).suite.toString() + "    ";
+        	}catch (Exception e) {
+        		System.out.println("whoops");
+        		System.out.println(e);
+        	}
         }
         BlackJackGUI.setPlayerHand(playerHandString);	
         BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
