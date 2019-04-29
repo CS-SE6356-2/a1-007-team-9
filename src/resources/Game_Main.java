@@ -100,11 +100,7 @@ public class Game_Main {
                 //print player hand
                 setPlayerHandLabel(players.get(i));
                 
-                if(players.get(i).card_sum == 21) {
-                	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has BlackJack");
-                    BlackJackPopUp.setVisible(true);
-                    players.get(i).round_state = false;
-                }
+
 
             }// while round state
             setDealerHandLabel(players.get(0));
@@ -116,21 +112,13 @@ public class Game_Main {
             dealer.DrawCard(deck);
         }
 
-        Player Winner = CheckforWinners(players, dealer);
+        CheckforWinners(players, dealer);
 
-        if(Winner != null) {
-        	 PopUpWindow WinnerFrame = new PopUpWindow(Winner, "won the round");
-             WinnerFrame.setVisible(true);
-        } else {
-            Player NoOne = new Player(0);
-            PopUpWindow WinnerFrame = new PopUpWindow(NoOne, "won the round");
-            WinnerFrame.setVisible(true);
-        }
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
 
-    static Player CheckforWinners(ArrayList<Player> players, Player dealer){
+    static void CheckforWinners(ArrayList<Player> players, Player dealer){
         int dealer_sum = dealer.card_sum;
         System.out.println("Dealers sum is: " + dealer_sum);
         for (int i = 0; i < players.size(); i++) {
@@ -145,10 +133,12 @@ public class Game_Main {
                 //player wins gets even money
             }else if(players.get(i).card_sum == 21 && (players.get(i).hand.size() == 2) ){
                 //player wins gets even money
+            	PopUpWindow BlackJackPopUp = new PopUpWindow(players.get(i), "has BlackJack");
+            	BlackJackPopUp.setVisible(true);
                 System.out.println("Player " + (i+1) + " won, with a blackjack " );
                 System.out.println();
                 players.get(i).resetPlayer();
-                return players.get(i);
+        
 
                 //player pushes and gets
             }else if(players.get(i).card_sum > dealer_sum || (players.get(i).card_sum < 21 && dealer_sum > 21)){
@@ -158,7 +148,7 @@ public class Game_Main {
 
                 players.get(i).money += (players.get(i).bet*2);
                 players.get(i).resetPlayer();
-                return players.get(i);
+        
 
                 //player pushes and gets
             }else if(players.get(i).card_sum == dealer_sum){
@@ -168,7 +158,7 @@ public class Game_Main {
 
                 players.get(i).money += players.get(i).bet;
                 players.get(i).resetPlayer();
-                return players.get(i);
+         
 
             }else{
                 //player loses and loses bet
@@ -179,7 +169,7 @@ public class Game_Main {
 
             }
         }
-        return null;
+
     }//check for winner
 
     //---------------------------------------------------------------------------------------------------------------------------
