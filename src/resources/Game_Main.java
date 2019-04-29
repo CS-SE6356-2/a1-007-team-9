@@ -86,7 +86,7 @@ public class Game_Main {
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
-        
+
         if (dealer.hand.get(0).value == Value.ACE){
                 insurance(players, dealer);
             }
@@ -96,8 +96,9 @@ public class Game_Main {
         for (int i = 0; i < players.size(); i++) {
             currentPlayer = players.get(i);
             BlackJackGUI.setPlayerNumber(Integer.toString(currentPlayer.playernumber));
-            
-            BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name()+ " "+ players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
+            if(players.get(i).round_state) {
+                BlackJackGUI.setPlayerHand(players.get(i).hand.get(0).value.name() + " " + players.get(i).hand.get(0).suite.toString()); //setting the gui player hand label
+            }
 
             while(players.get(i).round_state){
                 //print player hand
@@ -344,7 +345,7 @@ public class Game_Main {
             }//while
 
 
-            if(userinput.equals("Y")){
+            if(userinput.equals("Y") && players.get(i).money >= players.get(i).bet/2){
                 insurance_bet = players.get(i).bet/2;
                 System.out.println("Player " + (i+1) + "insurance bet is" + insurance_bet);
             }//Yes to insurance
