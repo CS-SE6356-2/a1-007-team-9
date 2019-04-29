@@ -198,7 +198,14 @@ public class Player {
         this.bet = 0;
         this.hand = new ArrayList<Card>();
         this.card_sum = 0;
-        this.round_state = true;
+        if(this.money == 0){
+            this.game_state = false;
+        }
+        if(this.game_state) {
+            this.round_state = true;
+        }else{
+            this.round_state = false;
+        }
     }
 
 }//player
