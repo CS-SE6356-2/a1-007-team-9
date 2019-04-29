@@ -111,8 +111,9 @@ public class Game_Main {
     //---------------------------------------------------------------------------------------------------------------------------
 
     static void PlayRound(Deck deck, ArrayList<Player> players){
+    	resetHand(players);
         Player dealer = new Player(0);
-
+        
 
         makeBet(players);
         DealInitialHands(players, deck);
@@ -163,7 +164,7 @@ public class Game_Main {
                 }
 
             }// while round state
-
+            setDealerHandLabel(players.get(0));
         }// for players
 
         //After all of the players have played out their hands dealer goes
@@ -450,5 +451,26 @@ public class Game_Main {
         BlackJackGUI.setPlayerHand(playerHandString);	
         BlackJackGUI.setHandSumLabel(Integer.toString(currentPlayer.card_sum));
     }
+    
+    public static void setDealerHandLabel(Player Dealer) {
 
+        String playerHandString = "";
+        for (int j =0; j< Dealer.hand.size(); j++) {
+        	try {
+        		playerHandString += Dealer.hand.get(j).value.name() + "-" + Dealer.hand.get(j).suite.toString() + "    ";
+        	}catch (Exception e) {
+        		System.out.println("whoops");
+        		System.out.println(e);
+        	}
+        }
+        BlackJackGUI.setDealerHand(playerHandString);	
+        BlackJackGUI.setDealerSum(Integer.toString(Dealer.card_sum));
+    }
+
+    public static void resetHand(ArrayList<Player> players) {
+    	 for (int i = 0; i < players.size(); i++) {
+         	players.get(i).hand = new ArrayList<Card>();
+         }
+    }
 }
+
