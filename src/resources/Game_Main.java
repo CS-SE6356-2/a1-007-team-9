@@ -60,7 +60,8 @@ public class Game_Main {
             PrintPlayers(players);
             PlayRound(deck, players);
         }
-        
+
+        PrintPlayers(players);
         BlackJackGUI.disableBtns();
         Player GameOver = new Player(-1);
         PopUpWindow GameOverFrame = new PopUpWindow(GameOver, "");
@@ -86,7 +87,8 @@ public class Game_Main {
         System.out.println("The dealer is currently showing a " + dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
         BlackJackGUI.setDealerHand(dealer.hand.get(0).value + " " + dealer.hand.get(0).suite);
 
-
+        //force insurance
+        //dealer.hand.get(0).value = Value.ACE;
         if (dealer.hand.get(0).value == Value.ACE){
                 insurance(players, dealer);
             }
